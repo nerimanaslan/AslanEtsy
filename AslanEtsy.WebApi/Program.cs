@@ -6,6 +6,11 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Dynamic Port Binding for Render, Cloud & Local
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+builder.WebHost.UseWebRoot("wwwroot");
+
 // Lowercase URLs
 builder.Services.Configure<RouteOptions>(options =>
 {
@@ -24,7 +29,7 @@ builder.Services.AddControllers()
 // Infrastructure & Business Layer Services
 builder.Services.AddInfrastructure(builder.Configuration);
 
-// CORS
+// CORS Policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -56,7 +61,7 @@ using (var scope = app.Services.CreateScope())
     await context.Database.EnsureCreatedAsync();
 }
 
-// Swagger UI only in Development
+// Swagger UI
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -77,7 +82,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 
-// Robust Fallback: Never return HTML for /api routes
+// SPA Fallback for Single Page Application
 app.MapFallback(async context =>
 {
     if (context.Request.Path.StartsWithSegments("/api"))
@@ -88,7 +93,9 @@ app.MapFallback(async context =>
         return;
     }
 
-    var indexPath = Path.Combine(app.Environment.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), "index.html");
+    var webRoot = app.Environment.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+    var indexPath = Path.Combine(webRoot, "index.html");
+
     if (File.Exists(indexPath))
     {
         context.Response.ContentType = "text/html; charset=utf-8";
