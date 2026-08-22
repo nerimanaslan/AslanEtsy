@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aslan Perde - m² Fiyat & Varyasyon Hesaplayıcı</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .safe-bottom {
+            padding-bottom: calc(env(safe-area-inset-bottom, 16px) + 68px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-orange-500 selection:text-white">
+
+    <!-- Mobile Top Navigation -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3">
+        <div class="max-w-xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-orange-600/30 text-lg">
+                    <i class="fa-solid fa-scroll"></i>
+                </a>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-base font-extrabold text-white tracking-tight leading-none">Aslan Perde</h1>
+                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-400 border border-orange-500/30">PRO</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-none mt-1">m² Fiyatlandırma & Katalog</p>
+                </div>
+            </div>
+
+            <!-- Currency & Main Hub Link -->
+            <div class="flex items-center space-x-2">
+                <select id="currencySelect" onchange="onCurrencyChange()" class="text-xs bg-slate-800 border border-slate-700 text-slate-200 rounded-lg px-2 py-1.5 font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <option value="TL">₺ TL</option>
+                    <option value="USD">$ USD</option>
+                    <option value="EUR">€ EUR</option>
+                    <option value="GBP">£ GBP</option>
+                </select>
+                <a href="index.html" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 text-xs flex items-center gap-1.5 transition" title="Ana Yönetim Paneline Dön">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main App Container -->
+    <main class="flex-1 max-w-xl w-full mx-auto p-4 safe-bottom space-y-4">
+
+        <!-- Notification Toast -->
+        <div id="toastNotification" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-800/95 border border-slate-700 text-white text-xs px-4 py-2.5 rounded-full shadow-2xl backdrop-blur-md flex items-center gap-2 transition duration-200">
+            <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span id="toastMessage"></span>
+        </div>
+
+        <!-- ================= TAB 1: m² CALCULATOR ================= -->
+        <section id="tab-calculator" class="space-y-4">
+            
+            <!-- Quick Price Input Banner -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-850 p-5 rounded-3xl border border-slate-700/80 shadow-xl space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2 text-xs font-semibold text-orange-400 uppercase tracking-wider">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>m² Birim Fiyatı</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-slate-900/60 px-2.5 py-1 rounded-full border border-slate-700 text-[11px] text-slate-300">
+                        <span>İndirim:</span>
+                        <input type="number" id="discountRateInput" value="30" oninput="calculateAllPrices()" class="w-8 bg-transparent text-orange-400 font-bold text-center focus:outline-none">
+                        <span>%</span>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <input type="number" id="m2PriceInput" value="4000" placeholder="Örn: 4000" oninput="calculateAllPrices()" class="w-full text-3xl font-black bg-slate-900/80 border border-slate-700 rounded-2xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                    <span id="currencySymbolSuffix" class="absolute right-4 top-4 text-slate-400 font-bold text-xl">₺ / m²</span>
+                </div>
+
+                <!-- Quick Presets -->
+                <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1 text-xs">
+                    <span class="text-[11px] text-slate-400 whitespace-nowrap">Hızlı Seç:</span>
+                    <button onclick="setM2Price(2500)" class="px-2.5 py-1 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg whitespace-nowrap font-medium transition">2.500</button>
+                    <button onclick="setM2Price(3500)" class="px-2.5 py-1 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg whitespace-nowrap font-medium transition">3.500</button>
+                    <button onclick="setM2Price(4000)" class="px-2.5 py-1 bg-orange-500/20 text-orange-300 border border-orange-500/40 rounded-lg whitespace-nowrap font-medium transition">4.000</button>
+                    <button onclick="setM2Price(5000)" class="px-2.5 py-1 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg whitespace-nowrap font-medium transition">5.000</button>
+                    <button onclick="setM2Price(6000)" class="px-2.5 py-1 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg whitespace-nowrap font-medium transition">6.000</button>
+                </div>
+            </div>
+
+            <!-- Action Bar: Copy All & View Switcher -->
+            <div class="flex items-center justify-between px-1">
+                <div>
+                    <h2 class="text-sm font-bold text-white flex items-center gap-1.5">
+                        <span>Etsy Standart Ölçüleri</span>
+                        <span class="text-xs text-slate-400 font-normal">(13 Varyasyon)</span>
+                    </h2>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="copyAllPricesToClipboard()" class="px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold shadow-lg shadow-orange-500/20 flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-copy"></i>
+                        <span>Listeyi Kopyala</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Variations List Container -->
+            <div id="variationsContainer" class="space-y-2.5">
+                <!-- Dynamically generated variation cards -->
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: CUSTOM SIZE CALCULATOR ================= -->
+        <section id="tab-custom" class="hidden space-y-4">
+            <div class="bg-slate-850 p-5 rounded-3xl border border-slate-800 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-sm text-white flex items-center gap-2">
+                        <i class="fa-solid fa-ruler-combined text-orange-400"></i>
+                        <span>Özel Ölçü Hesapla</span>
+                    </h3>
+                    <div class="flex bg-slate-900 p-1 rounded-xl border border-slate-700 text-xs">
+                        <button id="unitBtnInch" onclick="setCustomUnit('inch')" class="px-3 py-1 bg-orange-500 text-white font-bold rounded-lg transition">İnç (Inch)</button>
+                        <button id="unitBtnCm" onclick="setCustomUnit('cm')" class="px-3 py-1 text-slate-400 font-medium rounded-lg hover:text-white transition">CM</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1 font-medium">Genişlik (En / Width)</label>
+                        <div class="relative">
+                            <input type="number" id="customWidthInput" placeholder="Örn: 80" oninput="calculateCustomSize()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white text-base font-bold focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                            <span id="customWidthUnitLabel" class="absolute right-3 top-3 text-xs text-slate-500 font-bold">inch</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1 font-medium">Yükseklik (Boy / Length)</label>
+                        <div class="relative">
+                            <input type="number" id="customLengthInput" placeholder="Örn: 90" oninput="calculateCustomSize()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white text-base font-bold focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                            <span id="customLengthUnitLabel" class="absolute right-3 top-3 text-xs text-slate-500 font-bold">inch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                    <label class="text-xs text-slate-300 font-medium">Parça Adedi:</label>
+                    <div class="flex items-center gap-2">
+                        <button onclick="setCustomPieceCount(1)" id="btnPiece1" class="px-4 py-1.5 bg-orange-500 text-white font-bold text-xs rounded-xl border border-orange-400 shadow">1 Kanat (1 PC)</button>
+                        <button onclick="setCustomPieceCount(2)" id="btnPiece2" class="px-4 py-1.5 bg-slate-800 text-slate-300 font-medium text-xs rounded-xl border border-slate-700">2 Kanat (2 PCS)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Size Result Card -->
+            <div id="customResultCard" class="bg-gradient-to-br from-orange-600/20 via-slate-850 to-slate-900 p-5 rounded-3xl border border-orange-500/40 shadow-xl space-y-4">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <div class="text-[11px] font-bold text-orange-400 uppercase tracking-wider">Hesaplanan Özel Ölçü</div>
+                        <div class="text-lg font-black text-white mt-0.5" id="customDisplayDimensions">-</div>
+                        <div class="text-xs text-slate-400 mt-0.5" id="customDisplayMetric">-</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-[10px] text-slate-400 font-semibold">Toplam Alan</div>
+                        <div class="text-base font-black text-orange-300" id="customDisplayArea">0.00 m²</div>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-slate-700/60 grid grid-cols-2 gap-3">
+                    <div class="bg-slate-900/60 p-3 rounded-2xl border border-slate-800">
+                        <div class="text-[10px] text-slate-400 uppercase font-semibold">İndirimsiz Liste Fiyatı</div>
+                        <div class="text-base font-bold text-slate-300 line-through mt-0.5" id="customDisplayOriginalPrice">0 ₺</div>
+                        <div class="text-[10px] text-amber-400 mt-0.5">Etsy Liste Fiyatı</div>
+                    </div>
+                    <div class="bg-emerald-950/30 p-3 rounded-2xl border border-emerald-500/30">
+                        <div class="text-[10px] text-emerald-400 uppercase font-semibold">%30 İndirimli Satış</div>
+                        <div class="text-xl font-black text-emerald-400 mt-0.5" id="customDisplaySalePrice">0 ₺</div>
+                        <div class="text-[10px] text-emerald-300 mt-0.5 font-medium">Müşterinin Ödeyeceği</div>
+                    </div>
+                </div>
+
+                <button onclick="copyCustomPriceToClipboard()" class="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Bu Özel Fiyatı Kopyala</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: PRODUCTS & CATALOG WITH IMAGES ================= -->
+        <section id="tab-catalog" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-base font-extrabold text-white">Perde Modellerim</h2>
+                    <p class="text-xs text-slate-400">Görsel ve m² fiyatlarıyla kayıtlı kumaş modelleriniz</p>
+                </div>
+                <button onclick="openNewProductModal()" class="px-3.5 py-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 text-white rounded-xl text-xs font-bold shadow-lg flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Model Ekle</span>
+                </button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="productsCatalogGrid" class="space-y-3">
+                <!-- Dynamically filled with products -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 px-6 py-2">
+        <div class="max-w-xl mx-auto flex items-center justify-around">
+            <button onclick="switchMobileTab('calculator')" id="nav-calculator" class="flex flex-col items-center gap-1 text-orange-500 font-bold transition">
+                <i class="fa-solid fa-calculator text-lg"></i>
+                <span class="text-[10px]">Hesaplayıcı</span>
+            </button>
+            <button onclick="switchMobileTab('custom')" id="nav-custom" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200 transition">
+                <i class="fa-solid fa-ruler-combined text-lg"></i>
+                <span class="text-[10px]">Özel Ölçü</span>
+            </button>
+            <button onclick="switchMobileTab('catalog')" id="nav-catalog" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200 transition">
+                <i class="fa-solid fa-images text-lg"></i>
+                <span class="text-[10px]">Katalog & Ürünler</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================= MODAL: ADD / EDIT PRODUCT ================= -->
+    <div id="productModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-slate-850 border border-slate-700 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar animate-in slide-in-from-bottom duration-200 text-slate-100">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-base text-white flex items-center gap-2" id="modalProductTitle">
+                    <i class="fa-solid fa-plus-circle text-orange-400"></i>
+                    <span>Yeni Perde Modeli Ekle</span>
+                </h3>
+                <button onclick="closeProductModal()" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Product Form -->
+            <form id="productForm" onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
+                <input type="hidden" id="editProductId">
+
+                <!-- Image Upload with Preview -->
+                <div>
+                    <label class="block font-semibold text-slate-300 mb-1.5">Model Görseli (Kamera / Galeri)</label>
+                    <div class="relative flex flex-col items-center justify-center border-2 border-dashed border-slate-700 rounded-2xl p-4 bg-slate-900/60 hover:bg-slate-900 transition cursor-pointer" onclick="document.getElementById('productImageInput').click()">
+                        <img id="imagePreview" class="hidden w-full h-44 object-cover rounded-xl mb-2" alt="Önizleme">
+                        <div id="imagePlaceholder" class="flex flex-col items-center text-center text-slate-400 py-3">
+                            <div class="w-12 h-12 rounded-full bg-slate-800 text-orange-400 flex items-center justify-center text-xl mb-2">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <span class="font-semibold text-slate-200">Fotoğraf Yüklemek İçin Dokunun</span>
+                            <span class="text-[10px] text-slate-500 mt-0.5">JPG, PNG formatında</span>
+                        </div>
+                        <input type="file" id="productImageInput" accept="image/*" class="hidden" onchange="handleImageSelected(event)">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-300 mb-1">Model / Kumaş Adı *</label>
+                    <input type="text" id="prodNameInput" required placeholder="Örn: Çizgili Keten Perde - Bordo" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">m² Fiyatı *</label>
+                        <input type="number" id="prodM2PriceInput" required placeholder="Örn: 4000" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white text-sm font-bold focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">Kumaş Türü</label>
+                        <input type="text" id="prodFabricInput" placeholder="Örn: %100 Doğal Keten" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-300 mb-1">Model Notu / Açıklama</label>
+                    <textarea id="prodNoteInput" rows="2" placeholder="Renk seçenekleri, pile durumu veya atölye notları..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white text-xs focus:ring-2 focus:ring-orange-500 focus:outline-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeProductModal()" class="px-4 py-2.5 bg-slate-800 text-slate-300 font-semibold rounded-xl hover:bg-slate-700">İptal</button>
+                    <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-xl shadow-lg">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: VARIATION DETAIL & EXPORT ================= -->
+    <div id="variationDetailModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-850 border border-slate-700 w-full max-w-lg rounded-3xl p-6 space-y-4 max-h-[85vh] overflow-y-auto custom-scrollbar text-slate-100">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="font-black text-base text-white" id="modalDetailTitle">Model Fiyat Listesi</h3>
+                    <p class="text-xs text-orange-400 font-semibold" id="modalDetailM2">-</p>
+                </div>
+                <button onclick="closeVariationDetailModal()" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div id="modalDetailList" class="space-y-2 text-xs">
+                <!-- Dynamically generated list -->
+            </div>
+
+            <div class="pt-2">
+                <button onclick="copyModelPricesToClipboard()" class="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Tüm Fiyat Listesini Kopyala</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="curtains.js"></script>
+</body>
+</html>
