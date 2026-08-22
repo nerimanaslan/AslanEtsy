@@ -9,10 +9,12 @@ namespace AslanEtsy.WebApi.Controllers;
 public class AccountsController : ControllerBase
 {
     private readonly IEtsyAccountService _accountService;
+    private readonly IConfiguration _configuration;
 
-    public AccountsController(IEtsyAccountService accountService)
+    public AccountsController(IEtsyAccountService accountService, IConfiguration configuration)
     {
         _accountService = accountService;
+        _configuration = configuration;
     }
 
     [HttpGet]
@@ -61,9 +63,11 @@ public class AccountsController : ControllerBase
     [HttpGet("{id:int}/oauth/authorize")]
     public async Task<ActionResult<OAuthAuthorizeResultDto>> InitiateOAuth(int id, [FromQuery] string? redirectUri, CancellationToken cancellationToken)
     {
-        // Default redirect URI to self callback if not provided
+        // Use the configured public URL first. This keeps the URI identical
+        // during authorization and token exchange when the app is behind a
+        // reverse proxy (for example Render).
         var callbackUrl = string.IsNullOrWhiteSpace(redirectUri)
-            ? $"{Request.Scheme}://{Request.Host}/api/accounts/oauth/callback"
+            ? GetOAuthCallbackUrl()
             : redirectUri;
 
         try
@@ -84,7 +88,7 @@ public class AccountsController : ControllerBase
     [HttpGet("oauth/callback")]
     public async Task<IActionResult> OAuthCallback([FromQuery] string code, [FromQuery] string state, CancellationToken cancellationToken)
     {
-        var redirectUri = $"{Request.Scheme}://{Request.Host}/api/accounts/oauth/callback";
+        var redirectUri = GetOAuthCallbackUrl();
 
         var success = await _accountService.HandleOAuthCallbackAsync(state, code, redirectUri, cancellationToken);
 
@@ -95,6 +99,23 @@ public class AccountsController : ControllerBase
         }
 
         return Redirect("/index.html?oauth=error");
+    }
+
+    private string GetOAuthCallbackUrl()
+    {
+        // PUBLIC_BASE_URL is intended for hosting platforms. The appsettings
+        // value provides a checked-in production default, while the request
+        // URL remains the fallback for local development/custom domains.
+        var configuredBaseUrl = Environment.GetEnvironmentVariable("PUBLIC_BASE_URL")
+            ?? _configuration["PublicBaseUrl"];
+
+        if (Uri.TryCreate(configuredBaseUrl, UriKind.Absolute, out var publicUri)
+            && (publicUri.Scheme == Uri.UriSchemeHttps || publicUri.Scheme == Uri.UriSchemeHttp))
+        {
+            return new Uri(publicUri, "/api/accounts/oauth/callback").ToString();
+        }
+
+        return $"{Request.Scheme}://{Request.Host}/api/accounts/oauth/callback";
     }
 
     [HttpPost("{id:int}/refresh-token")]

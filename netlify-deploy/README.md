@@ -24,3 +24,14 @@ Bu klasör (`netlify-deploy`), Aslan Etsy Yönetim Paneli ön yüzünü (UI Dash
 - Siteniz Netlify üzerinde açıldıktan sonra sağ üst köşedeki **Çark (Ayarlar)** ikonuna tıklayın.
 - **Backend API URL** alanına .NET Web API sunucunuzun adresini (Örn: `https://api.siteniz.com`) girip kaydedin.
 - Artık Netlify üzerindeki arayüzünüz doğrudan arka plan API'niz ve Etsy ile haberleşecektir!
+
+### Etsy OAuth callback ayarı
+
+Etsy Developer Portal'da uygulamanızın Redirect URL alanına aşağıdaki adresi
+birebir ekleyin:
+
+`https://aslanetsy.onrender.com/api/accounts/oauth/callback`
+
+Farklı bir backend alan adı kullanıyorsanız Render ortam değişkenlerinde
+`PUBLIC_BASE_URL` değerini bu alan adıyla ayarlayın ve callback adresinde de aynı
+alan adını kullanın.

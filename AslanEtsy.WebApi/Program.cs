@@ -3,8 +3,25 @@ using AslanEtsy.Infrastructure;
 using AslanEtsy.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Render and other reverse proxies terminate TLS before forwarding the request
+// to Kestrel. Trust the forwarded scheme/host so OAuth callback URLs are built
+// with the public HTTPS address instead of the internal HTTP address.
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor
+        | ForwardedHeaders.XForwardedProto
+        | ForwardedHeaders.XForwardedHost;
+
+    // The app can run behind a managed proxy whose IP range is not known in
+    // advance. Restricting this to the default localhost entries would make
+    // the X-Forwarded-* headers ineffective in production.
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 
 // Dynamic Port Binding for Render, Cloud & Local
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
@@ -53,6 +70,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+// Must run before routing/controllers so Request.Scheme and Request.Host use
+// the public values supplied by the reverse proxy.
+app.UseForwardedHeaders();
 
 // Auto-create Clean SQLite Database if not exists
 using (var scope = app.Services.CreateScope())
