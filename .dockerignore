@@ -1,0 +1,10 @@
+**/.git
+**/.vs
+**/bin
+**/obj
+aslan_etsy_netlify_update.zip
+AslanEtsy_Netlify_Deploy
+netlify-deploy
+*.db
+*.db-shm
+*.db-wal

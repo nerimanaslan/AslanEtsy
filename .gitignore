@@ -1,0 +1,17 @@
+## Visual Studio & Build output
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Database & Cache
+*.db
+*.db-shm
+*.db-wal
+
+## Packages & Zips
+aslan_etsy_netlify_update.zip
+AslanEtsy_Netlify_Deploy/
