@@ -218,16 +218,6 @@ public class CurtainsController : ControllerBase
                 },
                 new()
                 {
-                    Name = "Heart Pattern Organic Cotton Bedding Set - Custom Size Duvet Cover",
-                    M2Price = 22000,
-                    Category = "Bedding",
-                    Fabric = "%100 Organic Cotton • Kırmızı Kalp Desenli Nevresim Takımı",
-                    Note = "Crib, Toddler, Twin, Double, Queen, King Yatak Ölçüleri",
-                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png",
-                    CreatedAtUtc = DateTime.UtcNow
-                },
-                new()
-                {
                     Name = "Duvet Cover Set 100% Cotton, Lace, Embroidered Organic Fabric",
                     M2Price = 22000,
                     Category = "Bedding",
@@ -461,7 +451,7 @@ public class CurtainsController : ControllerBase
                     Category = "SinglePrice",
                     Fabric = "%100 Organik Pamuk • 2 Adet 50x75 cm",
                     Note = "Yastık Kılıfı Seti - Sabit Fiyatlı Ürün",
-                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png",
+                    ImageUrl = "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600",
                     CreatedAtUtc = DateTime.UtcNow
                 },
                 {

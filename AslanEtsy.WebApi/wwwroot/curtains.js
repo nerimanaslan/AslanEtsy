@@ -425,15 +425,6 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/organic_thick_bamboo_ruffle.jpg'
     },
     {
-        id: 2,
-        category: 'Bedding',
-        name: 'Heart Pattern Organic Cotton Bedding Set - Custom Size Duvet Cover',
-        m2Price: 22000,
-        fabric: '%100 Organic Cotton • Kırmızı Kalp Desenli Nevresim Takımı',
-        note: 'Crib, Toddler, Twin, Double, Queen, King Yatak Ölçüleri',
-        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
-    },
-    {
         id: 21,
         category: 'Bedding',
         name: 'Duvet Cover Set 100% Cotton, Lace, Embroidered Organic Fabric',
@@ -729,7 +720,7 @@ const DEFAULT_WEB_PRODUCTS = [
         m2Price: 1500,
         fabric: '%100 Organik Pamuk • 2 Adet 50x75 cm',
         note: 'Yastık Kılıfı Seti - Sabit Fiyatlı Ürün',
-        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
+        imageUrl: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600'
     },
     {
         id: 102,
