@@ -355,6 +355,16 @@ public class CurtainsController : ControllerBase
                     Note = "Haki / Adaçayı Yeşili Cepli ve İsim Nakışlı Rustik Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_name_sage_green_cotton_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Ribbons Linen Duvet Cover Set Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Linen • Bej/Krem Çizgili & Yan Bağcıklı / Kurdeleli (Ribbons / Bows) Lüks Keten Nevresim Takımı",
+                    Note = "Çizgili ve Yan Bağcıklı/Fiyonklu Degrade Lüks Keten Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ribbons_linen_striped_bows_duvet_cover_set.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
