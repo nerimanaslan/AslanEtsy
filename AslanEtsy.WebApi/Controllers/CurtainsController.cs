@@ -325,6 +325,16 @@ public class CurtainsController : ControllerBase
                     Note = "Naturel Krem Zemin Çizgili ve Ahşap Düğmeli Rustik Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/stripe_patterned_buttoned_cotton_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Striped Duvet Cover Set 100% Linen Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Linen • Gül Kurusu / Krem İnce Çizgili Dökümlü Lüks Keten Nevresim Takımı",
+                    Note = "Gül Kurusu Çizgili Doğal Keten Düğmeli Lüks Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/striped_linen_duvet_cover_set_rose_cream.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

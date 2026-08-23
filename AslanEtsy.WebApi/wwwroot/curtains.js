@@ -453,6 +453,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/stripe_patterned_buttoned_cotton_bedding.webp'
     },
     {
+        id: 31,
+        category: 'Bedding',
+        name: 'Striped Duvet Cover Set 100% Linen Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Linen • Gül Kurusu / Krem İnce Çizgili Dökümlü Lüks Keten Nevresim Takımı',
+        note: 'Gül Kurusu Çizgili Doğal Keten Düğmeli Lüks Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/striped_linen_duvet_cover_set_rose_cream.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
