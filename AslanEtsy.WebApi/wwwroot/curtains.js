@@ -529,6 +529,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/organic_buldan_cotton_cross_stitch_bedding.webp'
     },
     {
+        id: 39,
+        category: 'Bedding',
+        name: 'Lace Bedding Set in Navy Blue or Pink | Elegant Floral Duvet Cover Set',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton Satin • Lacivert & Beyaz Gül Motifli Fransız Dantelli (Floral Lace) Lüks Nevresim Takımı',
+        note: 'Lacivert & Beyaz Zemin Gül Motifli Fransız Dantelli Düğmeli Lüks Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/navy_blue_floral_lace_bedding.jpg'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',

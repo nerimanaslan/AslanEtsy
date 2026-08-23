@@ -405,6 +405,16 @@ public class CurtainsController : ControllerBase
                     Note = "Geleneksel Organik Buldan Kumaşı El İşi Kanaviçe Çiçek Nakışlı Lüks Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/organic_buldan_cotton_cross_stitch_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Lace Bedding Set in Navy Blue or Pink | Elegant Floral Duvet Cover Set",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton Satin • Lacivert & Beyaz Gül Motifli Fransız Dantelli (Floral Lace) Lüks Nevresim Takımı",
+                    Note = "Lacivert & Beyaz Zemin Gül Motifli Fransız Dantelli Düğmeli Lüks Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/navy_blue_floral_lace_bedding.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
