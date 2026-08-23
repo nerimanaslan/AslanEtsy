@@ -463,6 +463,15 @@ public class CurtainsController : ControllerBase
                     Note = "Masa Runner - Sabit Fiyatlı Ürün",
                     ImageUrl = "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Women’s Linen Button-Front Tunic Top | Casual Summer Blouse Available in Multiple Colors",
+                    M2Price = 1650,
+                    Category = "SinglePrice",
+                    Fabric = "%100 Doğal Keten (Organic Linen) • Düğmeli Tunik & Bluz",
+                    Note = "Doğal Keten Yazlık Düğmeli Tunik / Bluz - Çoklu Renk Seçenekleri",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_linen_button_front_tunic_top.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
