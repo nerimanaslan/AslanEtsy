@@ -335,6 +335,16 @@ public class CurtainsController : ControllerBase
                     Note = "Gül Kurusu Çizgili Doğal Keten Düğmeli Lüks Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/striped_linen_duvet_cover_set_rose_cream.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Bold Striped Duvet Cover Set 100% Cotton, Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Mercan / Somon & Beyaz Kalın Çizgili (Bold Striped) Lüks Pamuk Nevresim Takımı",
+                    Note = "Mercan Somon & Krem Geniş Blok Çizgili Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/bold_striped_coral_cotton_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

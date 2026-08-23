@@ -462,6 +462,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/striped_linen_duvet_cover_set_rose_cream.webp'
     },
     {
+        id: 32,
+        category: 'Bedding',
+        name: 'Bold Striped Duvet Cover Set 100% Cotton, Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Mercan / Somon & Beyaz Kalın Çizgili (Bold Striped) Lüks Pamuk Nevresim Takımı',
+        note: 'Mercan Somon & Krem Geniş Blok Çizgili Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/bold_striped_coral_cotton_bedding.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
