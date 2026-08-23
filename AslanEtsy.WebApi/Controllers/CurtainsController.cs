@@ -315,6 +315,16 @@ public class CurtainsController : ControllerBase
                     Note = "Antrasit Gri & Pudra Pembe Siyah Kurdele Detaylı Lüks Keten Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ribbons_linen_duvet_cover_set.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Stripe Patterned Bedding Set, 100% Cotton, Embroidered Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Naturel Krem & Çizgili Ahşap Düğmeli (Buttoned) Lüks Pamuk Nevresim Takımı",
+                    Note = "Naturel Krem Zemin Çizgili ve Ahşap Düğmeli Rustik Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/stripe_patterned_buttoned_cotton_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
