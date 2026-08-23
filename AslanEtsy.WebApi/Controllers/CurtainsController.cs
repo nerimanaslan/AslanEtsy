@@ -415,6 +415,16 @@ public class CurtainsController : ControllerBase
                     Note = "Lacivert & Beyaz Zemin Gül Motifli Fransız Dantelli Düğmeli Lüks Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/navy_blue_floral_lace_bedding.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Elegant Ruffled Lace Bedding Set | Romantic French Country Duvet Cover Set in Taupe Gray",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Vizon / Gri & Beyaz Romantik Fransız Fırfırlı ve Dantelli (Ruffled Lace) Lüks Nevresim Takımı",
+                    Note = "Vizon Gri & Beyaz Kat Kat Fırfır ve Fransız Dantel Detaylı Lüks Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/romantic_french_ruffled_lace_bedding_grey.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

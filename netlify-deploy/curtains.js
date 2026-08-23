@@ -538,6 +538,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/navy_blue_floral_lace_bedding.jpg'
     },
     {
+        id: 40,
+        category: 'Bedding',
+        name: 'Elegant Ruffled Lace Bedding Set | Romantic French Country Duvet Cover Set in Taupe Gray',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Vizon / Gri & Beyaz Romantik Fransız Fırfırlı ve Dantelli (Ruffled Lace) Lüks Nevresim Takımı',
+        note: 'Vizon Gri & Beyaz Kat Kat Fırfır ve Fransız Dantel Detaylı Lüks Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/romantic_french_ruffled_lace_bedding_grey.jpg'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
