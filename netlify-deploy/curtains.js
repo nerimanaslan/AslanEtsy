@@ -766,6 +766,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 El Örgüsü Doğal Yün İplik • Geleneksel Anadolu Motifli Çorap & Patik (6 Farklı Desen)',
         note: 'Geleneksel Anadolu El Örgüsü Patik / Çorap - 6 Farklı Desen Seçeneği',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_turkish_knitted_wool_socks.jpg'
+    },
+    {
+        id: 107,
+        category: 'SinglePrice',
+        name: 'Women’s Handmade Ballet Slippers with Feather and Beaded Flower Detail | Elegant House Shoes',
+        m2Price: 1250,
+        fabric: 'Lüks Kadife (Velvet) • Saks Mavisi Tüy & El İşlemesi Boncuk Çiçek Detaylı Babet',
+        note: 'Saks Mavisi Lüks Kadife Tüylü ve Boncuklu Şık Ev Ayakkabısı / Babet',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_handmade_ballet_slippers_blue.jpg'
     }
 ];
 

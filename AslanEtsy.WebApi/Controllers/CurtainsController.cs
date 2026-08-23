@@ -499,6 +499,15 @@ public class CurtainsController : ControllerBase
                     Note = "Geleneksel Anadolu El Örgüsü Patik / Çorap - 6 Farklı Desen Seçeneği",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_turkish_knitted_wool_socks.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Women’s Handmade Ballet Slippers with Feather and Beaded Flower Detail | Elegant House Shoes",
+                    M2Price = 1250,
+                    Category = "SinglePrice",
+                    Fabric = "Lüks Kadife (Velvet) • Saks Mavisi Tüy & El İşlemesi Boncuk Çiçek Detaylı Babet",
+                    Note = "Saks Mavisi Lüks Kadife Tüylü ve Boncuklu Şık Ev Ayakkabısı / Babet",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_handmade_ballet_slippers_blue.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
