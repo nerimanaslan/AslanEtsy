@@ -490,6 +490,15 @@ public class CurtainsController : ControllerBase
                     Note = "Siyah & Çok Renkli Motifli El Örgüsü Bohem Yelek",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_vest.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Turkish Knitted Wool Socks & Slippers | Anatolian Patterned Traditional Folk Booties",
+                    M2Price = 650,
+                    Category = "SinglePrice",
+                    Fabric = "%100 El Örgüsü Doğal Yün İplik • Geleneksel Anadolu Motifli Çorap & Patik (6 Farklı Desen)",
+                    Note = "Geleneksel Anadolu El Örgüsü Patik / Çorap - 6 Farklı Desen Seçeneği",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_turkish_knitted_wool_socks.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

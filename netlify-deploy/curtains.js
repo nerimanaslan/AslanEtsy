@@ -757,6 +757,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 El Örgüsü Pamuk/Yün İplik • Hanım Dilendi Bey Beğendi Motifli Yelek',
         note: 'Siyah & Çok Renkli Motifli El Örgüsü Bohem Yelek',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_vest.jpg'
+    },
+    {
+        id: 106,
+        category: 'SinglePrice',
+        name: 'Handmade Turkish Knitted Wool Socks & Slippers | Anatolian Patterned Traditional Folk Booties',
+        m2Price: 650,
+        fabric: '%100 El Örgüsü Doğal Yün İplik • Geleneksel Anadolu Motifli Çorap & Patik (6 Farklı Desen)',
+        note: 'Geleneksel Anadolu El Örgüsü Patik / Çorap - 6 Farklı Desen Seçeneği',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_turkish_knitted_wool_socks.jpg'
     }
 ];
 
