@@ -235,6 +235,16 @@ public class CurtainsController : ControllerBase
                     Note = "Pudra Pembe Dantel & Nakış İşlemeli Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_pink_lace_embroidered.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Ruffled Duvet Cover Set 100% Cotton, Embroidered Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Fırfırlı (Ruffled) & Nakışlı Gri / Vizon Nevresim Takımı",
+                    Note = "Gri / Vizon Kenarları Fırfırlı Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_grey_embroidered.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
