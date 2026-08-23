@@ -20,8 +20,8 @@ public class CurtainsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] string? category = null)
     {
-        // Seed default products if database has fewer than 5 items
-        if (await _context.CurtainProducts.CountAsync() < 5)
+        // Seed default products if database has fewer than 15 items
+        if (await _context.CurtainProducts.CountAsync() < 15)
         {
             var existingNames = await _context.CurtainProducts.Select(p => p.Name).ToListAsync();
             var allCurtains = new List<CurtainProduct>
@@ -34,16 +34,6 @@ public class CurtainsController : ControllerBase
                     Fabric = "%100 Organic Thick Bamboo • Fırfırlı (Ruffle)",
                     Note = "Etsy Özel Sipariş • Beyaz Bambu Kumaş",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/organic_thick_bamboo_ruffle.jpg",
-                    CreatedAtUtc = DateTime.UtcNow
-                },
-                new()
-                {
-                    Name = "Heart Pattern Organic Cotton Bedding Set - Custom Size Duvet Cover",
-                    M2Price = 22000,
-                    Category = "Bedding",
-                    Fabric = "%100 Organic Cotton • Kırmızı Kalp Desenli Nevresim Takımı",
-                    Note = "Crib, Toddler, Twin, Double, Queen, King Yatak Ölçüleri",
-                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png",
                     CreatedAtUtc = DateTime.UtcNow
                 },
                 new()
@@ -134,6 +124,106 @@ public class CurtainsController : ControllerBase
                     Fabric = "Lüks Süet Kadife • Karartma Astarlı (Blackout Lining)",
                     Note = "Antrasit / Koyu Gri Lüks Kadife Karartma Fon Perde",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/suede_velvet_blackout_lining.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Cotton Satin Blackout Lining Curtain, Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "Lüks Pamuk Saten • İnci/Düğme Pileli Karartma Astarlı",
+                    Note = "Şampanya / Bej Parlak Lüks Pamuk Saten",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/cotton_satin_blackout_lining.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size, Pom-Pom Curtain",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "%100 Organic Linen • Çizgili Karartma & Pom-Pom / Katmanlı Ruffle",
+                    Note = "Bordo / Krem Çizgili Pom-Pom Detaylı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_pompom.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Suede Velvet Blackout Lining Curtain Organic Fabric - Custom Size (Dusty Rose)",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "Lüks Süet Kadife • Gül Kurusu / Pudra Karartma Astarlı",
+                    Note = "Gül Kurusu / Pudra Pembe Lüks Kadife Karartma",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/suede_velvet_pink_blackout.webp",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Off-White Sheer Curtain: Pleated Tulle, Wrinkle-Free, Organic Cotton Fabric",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "Organik Pamuk & Keten Tül (Sheer) • Kırık Beyaz/Ekru Ütü İstemez",
+                    Note = "DSN: TTM • VR: EKRU • EN: 300CM • Pileli Tül Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/off_white_sheer_curtain_tulle.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Blackout Curtain With Pom-Poms, Made From 100% Organic Cotton Fabric.",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "%100 Organic Cotton • 3D Ponponlu (Pom-Poms / Tufted Dots) Karartma",
+                    Note = "Vizon / Bej 3D Ponpon İşlemeli Karartma Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/blackout_curtain_with_pompoms_cotton.webp",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Linen Blend Curtain Panel – Organic Cotton Curtain with Fringe, Rustic Boho Window Treatment",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "Organik Pamuk & Keten Karışımı • Çiçek Nakışlı & Dantel Saçaklı (Fringe)",
+                    Note = "Gül Nakışlı ve Püsküllü Rustik Boho Pencere Perdesi",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/linen_blend_curtain_fringe_rustic_boho.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "100% Linen Blackout Curtains with Valance, Grey Gingham Checkered Window Treatments, Farmhouse Style Nursery Drapes, Custom Size Panel",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "%100 Organic Linen • Gri Pötikare (Gingham Checkered) & Valanslı",
+                    Note = "Gri Pötikare Ekoseli Çift Katlı Valanslı Karartma Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/grey_gingham_checkered_linen_valance.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Striped Linen Blackout Curtains with Pom Pom Trim, Ticking Stripe Drapes for Farmhouse Decor, Custom Size Rustic Window Panels, Beige Cream",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "%100 Organic Linen • Bej/Krem İnce Çizgili & Yan Ponponlu (Pom Pom Trim)",
+                    Note = "Bej Krem Çizgili Ponpon Kenarlı Farmhouse Karartma",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/striped_linen_pompom_trim_beige_cream.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "100% Organic Linen Blackout Curtain, Pink Striped Linen Drapes, Organic Cotton Lining, Custom Size Drapes",
+                    M2Price = 4000,
+                    Category = "Curtain",
+                    Fabric = "%100 Organic Linen • Pembe / Şeker Pembe Çizgili & Pamuk Astarlı",
+                    Note = "Pembe Çizgili Rustik Karartma Keten Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/pink_striped_linen_blackout_drapes.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Heart Pattern Organic Cotton Bedding Set - Custom Size Duvet Cover",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Kırmızı Kalp Desenli Nevresim Takımı",
+                    Note = "Crib, Toddler, Twin, Double, Queen, King Yatak Ölçüleri",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png",
                     CreatedAtUtc = DateTime.UtcNow
                 }
             };
