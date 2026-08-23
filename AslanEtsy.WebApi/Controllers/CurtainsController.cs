@@ -255,6 +255,16 @@ public class CurtainsController : ControllerBase
                     Note = "Beyaz Prenses Tarzı Fırfır & Pili Detaylı Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/korean_princess_ruffles_duvet_cover_set.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Ruffled Stripe Patterned Bedding Set, 100% Linen, Embroidered Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Linen • Gül Kurusu / Krem Çizgili & Kenarları Krem Fırfırlı (Ruffled) Lüks Keten Nevresim Takımı",
+                    Note = "Gül Kurusu Çizgili Keten Fırfırlı Lüks Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_stripe_patterned_linen_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

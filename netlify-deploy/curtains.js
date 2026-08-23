@@ -390,6 +390,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/korean_princess_ruffles_duvet_cover_set.webp'
     },
     {
+        id: 24,
+        category: 'Bedding',
+        name: 'Ruffled Stripe Patterned Bedding Set, 100% Linen, Embroidered Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Linen • Gül Kurusu / Krem Çizgili & Kenarları Krem Fırfırlı (Ruffled) Lüks Keten Nevresim Takımı',
+        note: 'Gül Kurusu Çizgili Keten Fırfırlı Lüks Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_stripe_patterned_linen_bedding.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
