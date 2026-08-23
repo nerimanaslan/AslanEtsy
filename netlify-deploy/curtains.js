@@ -323,18 +323,22 @@ function getCurtainsApiUrl() {
 
 async function syncWithCloud() {
     try {
+        const deleted = JSON.parse(localStorage.getItem('aslan_deleted_products') || '[]');
+        const deletedSet = new Set(deleted);
         const res = await fetch(getCurtainsApiUrl());
         if (res.ok) {
             const cloudList = await res.json();
-            const formatted = cloudList.map(p => ({
-                id: p.id,
-                name: p.name,
-                category: p.category || 'Curtain',
-                m2Price: Number(p.m2Price),
-                fabric: p.fabric || '',
-                note: p.note || '',
-                imageUrl: p.imageUrl || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
-            }));
+            const formatted = cloudList
+                .filter(p => !p.isDeleted && !deletedSet.has((p.name || '').trim().toLowerCase()))
+                .map(p => ({
+                    id: p.id,
+                    name: p.name,
+                    category: p.category || 'Curtain',
+                    m2Price: Number(p.m2Price),
+                    fabric: p.fabric || '',
+                    note: p.note || '',
+                    imageUrl: p.imageUrl || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
+                }));
             localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(formatted));
             renderProductsCatalog();
         }
@@ -823,12 +827,29 @@ function handleSaveProduct(e) {
 }
 
 async function deleteProduct(productId) {
-    if (!confirm('Bu perde modelini silmek istediğinize emin misiniz?')) return;
+    if (!confirm('Bu modeli silmek istediğinize emin misiniz?')) return;
     try {
-        await fetch(`${getCurtainsApiUrl()}/${productId}`, { method: 'DELETE' });
-        await syncWithCloud();
-        showToast('Model buluttan silindi.', 'info');
-    } catch {
+        let products = getStoredProducts();
+        const target = products.find(p => p.id === productId);
+        const name = target ? target.name : '';
+
+        // Add to deleted set
+        let deleted = JSON.parse(localStorage.getItem('aslan_deleted_products') || '[]');
+        if (name && !deleted.includes(name.trim().toLowerCase())) {
+            deleted.push(name.trim().toLowerCase());
+            localStorage.setItem('aslan_deleted_products', JSON.stringify(deleted));
+        }
+
+        products = products.filter(p => p.id !== productId && p.name !== name);
+        saveProducts(products);
+
+        // Delete from cloud
+        if (productId && !isNaN(productId)) {
+            await fetch(`${getCurtainsApiUrl()}/${productId}`, { method: 'DELETE' });
+        }
+        showToast('Model silindi.', 'info');
+    } catch (e) {
+        console.error(e);
         let products = getStoredProducts();
         products = products.filter(p => p.id !== productId);
         saveProducts(products);
