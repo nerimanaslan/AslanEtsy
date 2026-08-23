@@ -507,6 +507,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/muslin_linen_duvet_cover_set_pink.webp'
     },
     {
+        id: 37,
+        category: 'Bedding',
+        name: '100% Organic Cotton Muslin Duvet Cover Set - Ethnic Patterned Hand Embroidery Bedding - Breathable Soft Boho Bedspread',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton Muslin • Krem Zemin Etnik Çiçek Nakışlı (Ethnic Hand Embroidery) Bohem Müslin Nevresim Takımı',
+        note: 'Krem Zemin Üzerine Etnik Çiçek İşlemeli Nefes Alan Bohem Müslin Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ethnic_embroidered_cotton_muslin_bedding.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',

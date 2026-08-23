@@ -385,6 +385,16 @@ public class CurtainsController : ControllerBase
                     Note = "Pudra Pembe Krinkıl Müslin Dokulu Yumuşacık Organik Keten Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/muslin_linen_duvet_cover_set_pink.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "100% Organic Cotton Muslin Duvet Cover Set - Ethnic Patterned Hand Embroidery Bedding - Breathable Soft Boho Bedspread",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton Muslin • Krem Zemin Etnik Çiçek Nakışlı (Ethnic Hand Embroidery) Bohem Müslin Nevresim Takımı",
+                    Note = "Krem Zemin Üzerine Etnik Çiçek İşlemeli Nefes Alan Bohem Müslin Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ethnic_embroidered_cotton_muslin_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
