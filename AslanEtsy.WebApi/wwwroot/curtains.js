@@ -556,6 +556,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/mauve_ivory_lace_striped_bedding.jpg'
     },
     {
+        id: 42,
+        category: 'Bedding',
+        name: '100% Cotton Lace Bedding Set in Blue or Pink | Handmade Lace Duvet Cover | Elegant Romantic Bedroom Decor',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Toz Pembe & Beyaz El Emeği Örgü Dantelli (Handmade Lace) Lüks Nevresim Takımı',
+        note: 'Pudra Pembe El Emeği Geleneksel Dantel ve Nervür İşlemeli Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/handmade_lace_pink_cotton_bedding.jpg'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',

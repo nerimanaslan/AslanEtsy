@@ -435,6 +435,16 @@ public class CurtainsController : ControllerBase
                     Note = "Mürdüm / Gül Kurusu Çizgili ve Fransız Çiçek Dantelli Lüks Pamuk Saten Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/mauve_ivory_lace_striped_bedding.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "100% Cotton Lace Bedding Set in Blue or Pink | Handmade Lace Duvet Cover | Elegant Romantic Bedroom Decor",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Toz Pembe & Beyaz El Emeği Örgü Dantelli (Handmade Lace) Lüks Nevresim Takımı",
+                    Note = "Pudra Pembe El Emeği Geleneksel Dantel ve Nervür İşlemeli Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/handmade_lace_pink_cotton_bedding.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
