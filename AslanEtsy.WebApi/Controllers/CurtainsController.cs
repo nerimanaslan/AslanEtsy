@@ -265,6 +265,16 @@ public class CurtainsController : ControllerBase
                     Note = "Gül Kurusu Çizgili Keten Fırfırlı Lüks Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_stripe_patterned_linen_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Red Heart Duvet Cover Set 100% Cotton, Embroidered Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Kırmızı Kalp Desenli (Red Heart) Beyaz Pamuk Nevresim Takımı",
+                    Note = "Beyaz Zemin Kırmızı Kalp Desenli Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/red_heart_duvet_cover_set_cotton.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

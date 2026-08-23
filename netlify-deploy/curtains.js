@@ -399,6 +399,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_stripe_patterned_linen_bedding.webp'
     },
     {
+        id: 25,
+        category: 'Bedding',
+        name: 'Red Heart Duvet Cover Set 100% Cotton, Embroidered Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Kırmızı Kalp Desenli (Red Heart) Beyaz Pamuk Nevresim Takımı',
+        note: 'Beyaz Zemin Kırmızı Kalp Desenli Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/red_heart_duvet_cover_set_cotton.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
