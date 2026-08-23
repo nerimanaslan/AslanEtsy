@@ -748,6 +748,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 El Örgüsü Pamuk İplik • Ahşap Kulplu 3 Boyutlu Gül Desenli Çanta',
         note: 'Lacivert El Örgüsü Çiçekli / Güllü Ahşap Saplı Omuz & El Çantası',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_flower_handbag_navy.jpg'
+    },
+    {
+        id: 105,
+        category: 'SinglePrice',
+        name: 'Handmade Crochet Granny Square Vest | Black Colorful Patchwork Sweater Vest | Boho Fashion Style',
+        m2Price: 2250,
+        fabric: '%100 El Örgüsü Pamuk/Yün İplik • Hanım Dilendi Bey Beğendi Motifli Yelek',
+        note: 'Siyah & Çok Renkli Motifli El Örgüsü Bohem Yelek',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_vest.jpg'
     }
 ];
 

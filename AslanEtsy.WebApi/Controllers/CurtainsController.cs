@@ -481,6 +481,15 @@ public class CurtainsController : ControllerBase
                     Note = "Lacivert El Örgüsü Çiçekli / Güllü Ahşap Saplı Omuz & El Çantası",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_flower_handbag_navy.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Crochet Granny Square Vest | Black Colorful Patchwork Sweater Vest | Boho Fashion Style",
+                    M2Price = 2250,
+                    Category = "SinglePrice",
+                    Fabric = "%100 El Örgüsü Pamuk/Yün İplik • Hanım Dilendi Bey Beğendi Motifli Yelek",
+                    Note = "Siyah & Çok Renkli Motifli El Örgüsü Bohem Yelek",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_vest.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
