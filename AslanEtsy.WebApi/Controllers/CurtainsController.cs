@@ -245,6 +245,16 @@ public class CurtainsController : ControllerBase
                     Note = "Gri / Vizon Kenarları Fırfırlı Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_grey_embroidered.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Korean Princess Style Ruffles Duvet Cover Set 100% Cotton, Embroidered Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Beyaz Kore Prenses Tarzı Fırfırlı (Ruffles) & Pileli Lüks Nevresim Takımı",
+                    Note = "Beyaz Prenses Tarzı Fırfır & Pili Detaylı Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/korean_princess_ruffles_duvet_cover_set.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

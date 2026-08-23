@@ -381,6 +381,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_grey_embroidered.webp'
     },
     {
+        id: 23,
+        category: 'Bedding',
+        name: 'Korean Princess Style Ruffles Duvet Cover Set 100% Cotton, Embroidered Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Beyaz Kore Prenses Tarzı Fırfırlı (Ruffles) & Pileli Lüks Nevresim Takımı',
+        note: 'Beyaz Prenses Tarzı Fırfır & Pili Detaylı Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/korean_princess_ruffles_duvet_cover_set.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
