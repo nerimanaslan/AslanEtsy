@@ -275,6 +275,16 @@ public class CurtainsController : ControllerBase
                     Note = "Beyaz Zemin Kırmızı Kalp Desenli Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/red_heart_duvet_cover_set_cotton.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Ruffled Duvet Cover Set 100% Cotton, Embroidered Organic Fabric (Beige/White)",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Bej / Vizon & Beyaz Çift Renk Fırfırlı (Ruffled) Lüks Nevresim Takımı",
+                    Note = "Vizon Bej & Beyaz Katmanlı Fırfırlı Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_beige_white.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

@@ -408,6 +408,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/red_heart_duvet_cover_set_cotton.webp'
     },
     {
+        id: 26,
+        category: 'Bedding',
+        name: 'Ruffled Duvet Cover Set 100% Cotton, Embroidered Organic Fabric (Beige/White)',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Bej / Vizon & Beyaz Çift Renk Fırfırlı (Ruffled) Lüks Nevresim Takımı',
+        note: 'Vizon Bej & Beyaz Katmanlı Fırfırlı Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_beige_white.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
