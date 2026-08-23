@@ -256,15 +256,105 @@ async function syncWithCloud() {
     }
 }
 
+const DEFAULT_WEB_PRODUCTS = [
+    {
+        id: 1,
+        name: 'Organic Thick Bamboo Ruffle Curtains - Custom Size, Sold in Pairs.',
+        m2Price: 4000,
+        fabric: '%100 Organic Thick Bamboo • Fırfırlı (Ruffle)',
+        note: 'Etsy Özel Sipariş • Beyaz Bambu Kumaş',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/organic_thick_bamboo_ruffle.jpg'
+    },
+    {
+        id: 2,
+        name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Çizgili Karartma (Blackout)',
+        note: 'Bordo / Krem Çizgili Rustik Karartma Fon Perde',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_blackout.jpg'
+    },
+    {
+        id: 3,
+        name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size (Boydan)',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Boydan Dökümlü Karartma',
+        note: 'Bordo / Bej Çizgili Boydan Görünüm',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_full_length.jpg'
+    },
+    {
+        id: 4,
+        name: 'Densely Pleated Linen Blackout Curtain Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Sık Pileli (Densely Pleated)',
+        note: 'Vizon / Taupe Sık Pileli Dökümlü Karartma Keten',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/densely_pleated_linen_blackout.jpg'
+    },
+    {
+        id: 5,
+        name: 'American Style Dense Pleated Linen Blackout Curtain in Organic Fabric - Customized Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Amerikan / Pinch Pleat Pileli',
+        note: 'Amerikan Pileli Rustik Keten Karartma Fon Perde',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/american_style_dense_pleated_linen.jpg'
+    },
+    {
+        id: 6,
+        name: 'Decorative Frequent Pleated Linen Blackout Curtain Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Düğme Detaylı Sık Pileli',
+        note: 'Naturel Bej Keten Düğmeli Dekoratif Karartma',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/decorative_frequent_pleated_linen.jpg'
+    },
+    {
+        id: 7,
+        name: 'Linen Blackout Lining Curtains, Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Kuşaklı (Tab Top) Karartma Astarlı',
+        note: 'Bej/Keten Kuşaklı Karartma Astarlı Fon Perde',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/linen_blackout_lining_curtains.jpg'
+    },
+    {
+        id: 8,
+        name: 'Tufted Liner Linen Blackout Curtains, Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Yan Püsküllü (Tufted/Tassel)',
+        note: 'Pudra / Toz Gül Keten Püsküllü Karartma Fon Perde',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/tufted_liner_linen_blackout.jpg'
+    },
+    {
+        id: 9,
+        name: 'Dusty Blue Pompom Trim Linen Curtains, Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: '%100 Organic Linen • Buz Mavisi Ponponlu Fırfırlı',
+        note: 'Buz Mavisi / Dusty Blue Ponponlu Doğal Keten',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/dusty_blue_pompom_trim_linen.jpg'
+    },
+    {
+        id: 10,
+        name: 'Suede Velvet Blackout Lining Curtain Organic Fabric - Custom Size',
+        m2Price: 4000,
+        fabric: 'Lüks Süet Kadife • Karartma Astarlı (Blackout Lining)',
+        note: 'Antrasit / Koyu Gri Lüks Kadife Karartma Fon Perde',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/suede_velvet_blackout_lining.jpg'
+    }
+];
+
 function initDefaultProducts() {
+    const existing = localStorage.getItem(STORAGE_KEY_PRODUCTS);
+    if (!existing || JSON.parse(existing).length < 5) {
+        localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(DEFAULT_WEB_PRODUCTS));
+    }
+    renderProductsCatalog();
     syncWithCloud();
 }
 
 function getStoredProducts() {
     try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY_PRODUCTS)) || [];
+        const list = JSON.parse(localStorage.getItem(STORAGE_KEY_PRODUCTS));
+        if (list && list.length > 0) return list;
+        return DEFAULT_WEB_PRODUCTS;
     } catch {
-        return [];
+        return DEFAULT_WEB_PRODUCTS;
     }
 }
 

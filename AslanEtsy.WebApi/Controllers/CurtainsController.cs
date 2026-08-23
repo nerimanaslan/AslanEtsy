@@ -20,31 +20,111 @@ public class CurtainsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        // Seed default products if database is empty
-        if (!await _context.CurtainProducts.AnyAsync())
+        // Seed default products if database has fewer than 5 items
+        if (await _context.CurtainProducts.CountAsync() < 5)
         {
-            var defaultList = new List<CurtainProduct>
+            var existingNames = await _context.CurtainProducts.Select(p => p.Name).ToListAsync();
+            var allCurtains = new List<CurtainProduct>
             {
                 new()
                 {
-                    Name = "Kırmızı Çizgili Keten Fon Perde",
+                    Name = "Organic Thick Bamboo Ruffle Curtains - Custom Size, Sold in Pairs.",
                     M2Price = 4000,
-                    Fabric = "%100 Saf Pamuk & Keten Karışımı",
-                    Note = "Etsy Çok Satan • Rustik Çizgili Kumaş",
-                    ImageUrl = "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600",
+                    Fabric = "%100 Organic Thick Bamboo • Fırfırlı (Ruffle)",
+                    Note = "Etsy Özel Sipariş • Beyaz Bambu Kumaş",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/organic_thick_bamboo_ruffle.jpg",
                     CreatedAtUtc = DateTime.UtcNow
                 },
                 new()
                 {
-                    Name = "Bergonya / Bordo Keten Fon Perde",
-                    M2Price = 4500,
-                    Fabric = "%100 Doğal Taşlanmış Keten",
-                    Note = "Cranberry / Koyu Bordo Şarap Rengi",
-                    ImageUrl = "https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?w=600",
+                    Name = "Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Çizgili Karartma (Blackout)",
+                    Note = "Bordo / Krem Çizgili Rustik Karartma Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_blackout.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size (Boydan)",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Boydan Dökümlü Karartma",
+                    Note = "Bordo / Bej Çizgili Boydan Görünüm",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_full_length.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Densely Pleated Linen Blackout Curtain Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Sık Pileli (Densely Pleated)",
+                    Note = "Vizon / Taupe Sık Pileli Dökümlü Karartma Keten",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/densely_pleated_linen_blackout.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "American Style Dense Pleated Linen Blackout Curtain in Organic Fabric - Customized Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Amerikan / Pinch Pleat Pileli",
+                    Note = "Amerikan Pileli Rustik Keten Karartma Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/american_style_dense_pleated_linen.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Decorative Frequent Pleated Linen Blackout Curtain Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Düğme Detaylı Sık Pileli",
+                    Note = "Naturel Bej Keten Düğmeli Dekoratif Karartma",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/decorative_frequent_pleated_linen.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Linen Blackout Lining Curtains, Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Kuşaklı (Tab Top) Karartma Astarlı",
+                    Note = "Bej/Keten Kuşaklı Karartma Astarlı Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/linen_blackout_lining_curtains.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Tufted Liner Linen Blackout Curtains, Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Yan Püsküllü (Tufted/Tassel)",
+                    Note = "Pudra / Toz Gül Keten Püsküllü Karartma Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/tufted_liner_linen_blackout.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Dusty Blue Pompom Trim Linen Curtains, Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "%100 Organic Linen • Buz Mavisi Ponponlu Fırfırlı",
+                    Note = "Buz Mavisi / Dusty Blue Ponponlu Doğal Keten",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/dusty_blue_pompom_trim_linen.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Suede Velvet Blackout Lining Curtain Organic Fabric - Custom Size",
+                    M2Price = 4000,
+                    Fabric = "Lüks Süet Kadife • Karartma Astarlı (Blackout Lining)",
+                    Note = "Antrasit / Koyu Gri Lüks Kadife Karartma Fon Perde",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/suede_velvet_blackout_lining.jpg",
                     CreatedAtUtc = DateTime.UtcNow
                 }
             };
-            await _context.CurtainProducts.AddRangeAsync(defaultList);
+
+            foreach (var item in allCurtains)
+            {
+                if (!existingNames.Contains(item.Name))
+                {
+                    await _context.CurtainProducts.AddAsync(item);
+                }
+            }
             await _context.SaveChangesAsync();
         }
 
