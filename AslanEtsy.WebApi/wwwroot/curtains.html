@@ -62,15 +62,19 @@
     <!-- Main App Container -->
     <main class="flex-1 max-w-xl w-full mx-auto p-3 safe-bottom space-y-3">
 
-        <!-- Category Switcher (Perde vs Nevresim) -->
+        <!-- Category Switcher (Perde vs Nevresim vs Tek Fiyat) -->
         <div class="flex items-center bg-slate-800/90 p-1 rounded-2xl border border-slate-700 shadow-md gap-1">
-            <button id="catBtnCurtain" onclick="switchCategory('Curtain')" class="flex-1 py-2 rounded-xl text-xs font-extrabold bg-orange-600 text-white flex items-center justify-center gap-1.5 transition">
+            <button id="catBtnCurtain" onclick="switchCategory('Curtain')" class="flex-1 py-2 rounded-xl text-[11px] font-extrabold bg-orange-600 text-white flex items-center justify-center gap-1.5 transition">
                 <i class="fa-solid fa-scroll"></i>
-                <span>🦁 Perdeler (13 Ölçü)</span>
+                <span>🦁 Perdeler</span>
             </button>
-            <button id="catBtnBedding" onclick="switchCategory('Bedding')" class="flex-1 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition">
+            <button id="catBtnBedding" onclick="switchCategory('Bedding')" class="flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition">
                 <i class="fa-solid fa-bed"></i>
-                <span>🛏️ Nevresim Takımları</span>
+                <span>🛏️ Nevresimler</span>
+            </button>
+            <button id="catBtnSinglePrice" onclick="switchCategory('SinglePrice')" class="flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-tag"></i>
+                <span>🏷️ Tek Fiyatlar</span>
             </button>
         </div>
 
@@ -349,6 +353,15 @@
                         </div>
                         <input type="file" id="productImageInput" accept="image/*" class="hidden" onchange="handleImageSelected(event)">
                     </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-300 mb-1">Kategori *</label>
+                    <select id="prodCategoryInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                        <option value="Curtain">🦁 Perde Modeli (13 Standart Ölçü & m²)</option>
+                        <option value="Bedding">🛏️ Nevresim Takımı (8 Yatak Ölçüsü)</option>
+                        <option value="SinglePrice">🏷️ Tek Fiyatlı Ürün (Sabit Fiyat & İndirim)</option>
+                    </select>
                 </div>
 
                 <div>

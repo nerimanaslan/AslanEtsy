@@ -445,6 +445,24 @@ public class CurtainsController : ControllerBase
                     Note = "Pudra Pembe El Emeği Geleneksel Dantel ve Nervür İşlemeli Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/handmade_lace_pink_cotton_bedding.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "2li Nakışlı Organik Pamuk Yastık Kılıfı Seti (50x75 cm)",
+                    M2Price = 1500,
+                    Category = "SinglePrice",
+                    Fabric = "%100 Organik Pamuk • 2 Adet 50x75 cm",
+                    Note = "Yastık Kılıfı Seti - Sabit Fiyatlı Ürün",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "El İşçiliği Keten Masa Örtüsü & Runner (40x140 cm)",
+                    M2Price = 1850,
+                    Category = "SinglePrice",
+                    Fabric = "%100 Doğal Keten • 40x140 cm",
+                    Note = "Masa Runner - Sabit Fiyatlı Ürün",
+                    ImageUrl = "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

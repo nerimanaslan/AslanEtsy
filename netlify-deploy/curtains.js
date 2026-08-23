@@ -29,6 +29,16 @@ const ETSY_BEDDING_VARIATIONS = [
     { id: 8, title: 'Extra 2× Pillowcase IN', sizeDesc: '2 Adet Yastık Kılıfı: 20×30" (50×75cm)', multiplier: 0.1077 }
 ];
 
+// Standard Etsy Single Price (Tek Fiyat & Paketler) Variations
+const ETSY_SINGLE_PRICE_VARIATIONS = [
+    { id: 1, title: '1 Adet', desc: 'Tekil Ürün / Standart Paket', multiplier: 1.0 },
+    { id: 2, title: '2 Adet Paket (%5 Avantajlı)', desc: '2li Set / Çift Paket', multiplier: 1.90 },
+    { id: 3, title: '3 Adet Paket (%8 Avantajlı)', desc: '3lü Set / Paket', multiplier: 2.76 },
+    { id: 4, title: '4 Adet Paket (%10 Avantajlı)', desc: '4lü Set / Aile Paketi', multiplier: 3.60 },
+    { id: 5, title: '5 Adet Paket (%12 Avantajlı)', desc: '5li Set / Avantaj Paketi', multiplier: 4.40 },
+    { id: 6, title: '10 Adet Toptan Paket (%15 Avantajlı)', desc: '10lu Toptan / Çoklu Alım', multiplier: 8.50 }
+];
+
 // Currencies definition
 const CURRENCIES = {
     'TL': { symbol: '₺', name: 'Türk Lirası' },
@@ -38,7 +48,7 @@ const CURRENCIES = {
 };
 
 let currentCurrency = 'TL';
-let selectedCategory = 'Curtain'; // 'Curtain' or 'Bedding'
+let selectedCategory = 'Curtain'; // 'Curtain', 'Bedding' or 'SinglePrice'
 let currentMobileTab = 'catalog';
 let customUnit = 'inch';
 let customPieces = 1;
@@ -104,24 +114,46 @@ function getBeddingPriceCalculation(variation, baseCribPrice, discountRate = 30)
     };
 }
 
+function getSinglePriceCalculation(variation, basePrice, discountRate = 30) {
+    const originalPrice = Math.round(basePrice * variation.multiplier);
+    const salePrice = Math.round(originalPrice * (1 - (discountRate / 100)));
+    const savings = originalPrice - salePrice;
+    return {
+        originalPrice,
+        salePrice,
+        savings,
+        discountRate
+    };
+}
+
 function switchCategory(cat) {
     selectedCategory = cat;
     const curtainBtn = document.getElementById('catBtnCurtain');
     const beddingBtn = document.getElementById('catBtnBedding');
+    const singlePriceBtn = document.getElementById('catBtnSinglePrice');
     const m2Input = document.getElementById('m2PriceInput');
     const heroPriceLabel = document.getElementById('heroPriceLabel');
     const tabLabelCalc = document.getElementById('tabLabelCalculator');
 
     if (cat === 'Bedding') {
-        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition';
-        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-xs font-extrabold bg-pink-600 text-white flex items-center justify-center gap-1.5 transition shadow';
-        if (m2Input && (m2Input.value === '4000' || m2Input.value === '')) m2Input.value = '22000';
+        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1 transition';
+        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-extrabold bg-pink-600 text-white flex items-center justify-center gap-1 transition shadow';
+        if (singlePriceBtn) singlePriceBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1 transition';
+        if (m2Input && (m2Input.value === '4000' || m2Input.value === '1500' || m2Input.value === '')) m2Input.value = '22000';
         if (heroPriceLabel) heroPriceLabel.innerText = 'CRIB BAZ TAKIM FİYATI';
         if (tabLabelCalc) tabLabelCalc.innerText = '📐 8 Yatak Ölçüsü';
+    } else if (cat === 'SinglePrice') {
+        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1 transition';
+        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1 transition';
+        if (singlePriceBtn) singlePriceBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-extrabold bg-purple-600 text-white flex items-center justify-center gap-1 transition shadow';
+        if (m2Input && (m2Input.value === '4000' || m2Input.value === '22000' || m2Input.value === '')) m2Input.value = '1500';
+        if (heroPriceLabel) heroPriceLabel.innerText = 'TEKİL ÜRÜN BAZ FİYATI';
+        if (tabLabelCalc) tabLabelCalc.innerText = '📐 Tek Fiyat & Paket';
     } else {
-        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-xs font-extrabold bg-orange-600 text-white flex items-center justify-center gap-1.5 transition shadow';
-        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition';
-        if (m2Input && m2Input.value === '22000') m2Input.value = '4000';
+        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-extrabold bg-orange-600 text-white flex items-center justify-center gap-1 transition shadow';
+        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1 transition';
+        if (singlePriceBtn) singlePriceBtn.className = 'flex-1 py-2 rounded-xl text-[11px] font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1 transition';
+        if (m2Input && (m2Input.value === '22000' || m2Input.value === '1500')) m2Input.value = '4000';
         if (heroPriceLabel) heroPriceLabel.innerText = 'm² BİRİM FİYATI';
         if (tabLabelCalc) tabLabelCalc.innerText = '📐 13 Ölçü Tablosu';
     }
@@ -142,7 +174,42 @@ function calculateAllPrices() {
     const discountRate = parseFloat(discountInput?.value) || 30;
     const symbol = CURRENCIES[currentCurrency].symbol;
 
-    if (selectedCategory === 'Bedding') {
+    if (selectedCategory === 'SinglePrice') {
+        container.innerHTML = ETSY_SINGLE_PRICE_VARIATIONS.map((v, index) => {
+            const calc = getSinglePriceCalculation(v, basePrice, discountRate);
+            return `
+                <div class="bg-slate-850 hover:bg-slate-800/90 transition border border-slate-800 rounded-2xl p-3.5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-400 font-extrabold text-xs flex items-center justify-center border border-purple-500/30">
+                            ${index + 1}
+                        </div>
+                        <div>
+                            <div class="font-bold text-white text-xs flex items-center gap-1.5">
+                                <span>${v.title}</span>
+                            </div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">
+                                ${v.desc}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-right flex items-center gap-3">
+                        <div>
+                            <div class="text-[11px] text-slate-400 font-semibold line-through">
+                                ${formatNumber(calc.originalPrice)} ${symbol}
+                            </div>
+                            <div class="text-sm font-black text-purple-400">
+                                ${formatNumber(calc.salePrice)} ${symbol}
+                            </div>
+                        </div>
+                        <button onclick="copySingleVariationPrice('${v.title}', ${calc.originalPrice}, ${calc.salePrice})" class="p-2 text-slate-400 hover:text-purple-400 hover:bg-slate-700/60 rounded-lg transition" title="Fiyatı Kopyala">
+                            <i class="fa-solid fa-copy text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    } else if (selectedCategory === 'Bedding') {
         container.innerHTML = ETSY_BEDDING_VARIATIONS.map((v, index) => {
             const calc = getBeddingPriceCalculation(v, basePrice, discountRate);
             return `
@@ -644,6 +711,25 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: 'Lüks Süet Kadife • Karartma Astarlı (Blackout Lining)',
         note: 'Antrasit / Koyu Gri Lüks Kadife Karartma Fon Perde',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/suede_velvet_blackout_lining.jpg'
+    },
+    // DEFAULT SINGLE PRICE PRODUCTS
+    {
+        id: 101,
+        category: 'SinglePrice',
+        name: '2li Nakışlı Organik Pamuk Yastık Kılıfı Seti (50x75 cm)',
+        m2Price: 1500,
+        fabric: '%100 Organik Pamuk • 2 Adet 50x75 cm',
+        note: 'Yastık Kılıfı Seti - Sabit Fiyatlı Ürün',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
+    },
+    {
+        id: 102,
+        category: 'SinglePrice',
+        name: 'El İşçiliği Keten Masa Örtüsü & Runner (40x140 cm)',
+        m2Price: 1850,
+        fabric: '%100 Doğal Keten • 40x140 cm',
+        note: 'Masa Runner - Sabit Fiyatlı Ürün',
+        imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
     }
 ];
 
@@ -689,8 +775,8 @@ function renderProductsCatalog() {
             <!-- Product Image -->
             <div class="w-full sm:w-32 h-36 rounded-2xl bg-slate-800 overflow-hidden relative flex-shrink-0">
                 <img src="${p.imageUrl || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'}" alt="${p.name}" class="w-full h-full object-cover">
-                <button onclick="openEditProductModal(${p.id})" class="absolute bottom-2 left-2 bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold ${p.category === 'Bedding' ? 'text-pink-400 border-pink-500/30' : 'text-orange-400 border-orange-500/30'} border flex items-center gap-1 hover:bg-orange-500 hover:text-white transition" title="Fiyatı Değiştir">
-                    <span>${formatNumber(p.m2Price)} ${symbol} ${p.category === 'Bedding' ? '/ Baz Takım' : '/ m²'}</span>
+                <button onclick="openEditProductModal(${p.id})" class="absolute bottom-2 left-2 bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold ${p.category === 'Bedding' ? 'text-pink-400 border-pink-500/30' : p.category === 'SinglePrice' ? 'text-purple-400 border-purple-500/30' : 'text-orange-400 border-orange-500/30'} border flex items-center gap-1 hover:bg-orange-500 hover:text-white transition" title="Fiyatı Değiştir">
+                    <span>${formatNumber(p.m2Price)} ${symbol} ${p.category === 'Bedding' ? '/ Baz Takım' : p.category === 'SinglePrice' ? '/ Adet' : '/ m²'}</span>
                     <i class="fa-solid fa-pencil text-[9px]"></i>
                 </button>
             </div>
@@ -715,9 +801,9 @@ function renderProductsCatalog() {
 
                 <!-- Action: Open Price List for this product -->
                 <div class="pt-2 flex items-center gap-2">
-                    <button onclick="openProductPricingModal(${p.id})" class="flex-1 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
+                    <button onclick="openProductPricingModal(${p.id})" class="flex-1 py-2.5 bg-gradient-to-r ${p.category === 'Bedding' ? 'from-pink-500 to-rose-500 hover:from-pink-600' : p.category === 'SinglePrice' ? 'from-purple-600 to-indigo-600 hover:from-purple-700' : 'from-orange-500 to-amber-500 hover:from-orange-600'} text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
                         <i class="fa-solid fa-list-ol"></i>
-                        <span>13 Varyasyon Fiyatı</span>
+                        <span>${p.category === 'Bedding' ? '8 Yatak Ölçüsü' : p.category === 'SinglePrice' ? 'Fiyat & Paketler' : '13 Varyasyon'}</span>
                     </button>
                     <button onclick="openEditProductModal(${p.id})" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-orange-400 font-bold text-xs rounded-xl border border-orange-500/40 transition flex items-center gap-1">
                         <i class="fa-solid fa-tag"></i>
@@ -735,7 +821,9 @@ function openEditProductModal(productId) {
     if (!prod) return;
 
     document.getElementById('editProductId').value = prod.id;
-    document.getElementById('modalProductTitle').innerHTML = '<i class="fa-solid fa-pencil text-orange-400"></i><span>m² Fiyatı & Modeli Güncelle</span>';
+    document.getElementById('modalProductTitle').innerHTML = '<i class="fa-solid fa-pencil text-orange-400"></i><span>Fiyat & Modeli Güncelle</span>';
+    const catSelect = document.getElementById('prodCategoryInput');
+    if (catSelect) catSelect.value = prod.category || 'Curtain';
     document.getElementById('prodNameInput').value = prod.name;
     document.getElementById('prodM2PriceInput').value = prod.m2Price;
     document.getElementById('prodFabricInput').value = prod.fabric || '';
@@ -755,9 +843,11 @@ function openEditProductModal(productId) {
 
 function openNewProductModal() {
     document.getElementById('editProductId').value = '';
-    document.getElementById('modalProductTitle').innerHTML = '<i class="fa-solid fa-plus-circle text-orange-400"></i><span>Yeni Perde Modeli Ekle</span>';
+    document.getElementById('modalProductTitle').innerHTML = '<i class="fa-solid fa-plus-circle text-orange-400"></i><span>Yeni Ürün Modeli Ekle</span>';
+    const catSelect = document.getElementById('prodCategoryInput');
+    if (catSelect) catSelect.value = selectedCategory;
     document.getElementById('prodNameInput').value = '';
-    document.getElementById('prodM2PriceInput').value = document.getElementById('m2PriceInput').value || 4000;
+    document.getElementById('prodM2PriceInput').value = document.getElementById('m2PriceInput').value || (selectedCategory === 'Bedding' ? 22000 : selectedCategory === 'SinglePrice' ? 1500 : 4000);
     document.getElementById('prodFabricInput').value = '';
     document.getElementById('prodNoteInput').value = '';
     
@@ -794,23 +884,24 @@ function handleImageSelected(e) {
 
 async function handleSaveProductDirect() {
     const editId = document.getElementById('editProductId')?.value;
+    const cat = document.getElementById('prodCategoryInput')?.value || selectedCategory;
     const name = document.getElementById('prodNameInput').value.trim();
     const m2Price = parseFloat(document.getElementById('prodM2PriceInput').value) || 0;
     const fabric = document.getElementById('prodFabricInput').value.trim();
     const note = document.getElementById('prodNoteInput')?.value?.trim() || '';
 
     if (!name || m2Price <= 0) {
-        showToast('Lütfen model adı ve m² fiyatını girin!', 'warning');
+        showToast('Lütfen model adı ve birim fiyatını girin!', 'warning');
         return;
     }
 
     const payload = {
         name,
-        category: selectedCategory,
+        category: cat,
         m2Price,
-        fabric: fabric || (selectedCategory === 'Bedding' ? '%100 Organik Pamuk Saten' : 'Doğal Kumaş'),
+        fabric: fabric || (cat === 'Bedding' ? '%100 Organik Pamuk Saten' : cat === 'SinglePrice' ? '%100 Organik Pamuk' : 'Doğal Kumaş'),
         note,
-        imageUrl: currentSelectedImageBase64 || (selectedCategory === 'Bedding' 
+        imageUrl: currentSelectedImageBase64 || (cat === 'Bedding' 
             ? 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
             : 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600')
     };
@@ -902,7 +993,7 @@ function loadProductToCalculator(productId) {
     calculateAllPrices();
     calculateCustomSize();
     switchMobileTab('calculator');
-    showToast(`"${prod.name}" için m² fiyatı yüklendi!`, 'success');
+    showToast(`"${prod.name}" için fiyat yüklendi!`, 'success');
 }
 
 function openProductPricingModal(productId) {
@@ -915,25 +1006,65 @@ function openProductPricingModal(productId) {
     const symbol = CURRENCIES[currentCurrency].symbol;
 
     document.getElementById('modalDetailTitle').innerText = prod.name;
-    document.getElementById('modalDetailM2').innerText = `Birim Fiyat: ${formatNumber(prod.m2Price)} ${symbol} / m² (%${discountRate} İndirimli)`;
+    const isSingle = (prod.category === 'SinglePrice');
+    const isBed = (prod.category === 'Bedding');
+    document.getElementById('modalDetailM2').innerText = isBed
+        ? `Crib Baz Fiyat: ${formatNumber(prod.m2Price)} ${symbol} (%${discountRate} İndirimli)`
+        : isSingle
+        ? `Tekil Liste Fiyatı: ${formatNumber(prod.m2Price)} ${symbol} (%${discountRate} İndirimli)`
+        : `Birim Fiyat: ${formatNumber(prod.m2Price)} ${symbol} / m² (%${discountRate} İndirimli)`;
 
     const list = document.getElementById('modalDetailList');
     if (list) {
-        list.innerHTML = ETSY_VARIATIONS.map((v, i) => {
-            const calc = getCurtainPriceCalculation(v, prod.m2Price, discountRate);
-            return `
-                <div class="p-2.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-center justify-between">
-                    <div>
-                        <div class="font-bold text-white text-xs">${v.title}</div>
-                        <div class="text-[10px] text-slate-400">${calc.areaM2} m²</div>
+        if (isSingle) {
+            list.innerHTML = ETSY_SINGLE_PRICE_VARIATIONS.map((v, i) => {
+                const calc = getSinglePriceCalculation(v, prod.m2Price, discountRate);
+                return `
+                    <div class="p-2.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-white text-xs">${v.title}</div>
+                            <div class="text-[10px] text-slate-400">${v.desc}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-slate-400 line-through">${formatNumber(calc.originalPrice)} ${symbol}</div>
+                            <div class="text-xs font-black text-purple-400">${formatNumber(calc.salePrice)} ${symbol}</div>
+                        </div>
                     </div>
-                    <div class="text-right">
-                        <div class="text-[10px] text-slate-400 line-through">${formatNumber(calc.originalPrice)} ${symbol}</div>
-                        <div class="text-xs font-black text-emerald-400">${formatNumber(calc.salePrice)} ${symbol}</div>
+                `;
+            }).join('');
+        } else if (isBed) {
+            list.innerHTML = ETSY_BEDDING_VARIATIONS.map((v, i) => {
+                const calc = getBeddingPriceCalculation(v, prod.m2Price, discountRate);
+                return `
+                    <div class="p-2.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-white text-xs">${v.title}</div>
+                            <div class="text-[10px] text-slate-400">${v.sizeDesc}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-slate-400 line-through">${formatNumber(calc.originalPrice)} ${symbol}</div>
+                            <div class="text-xs font-black text-pink-400">${formatNumber(calc.salePrice)} ${symbol}</div>
+                        </div>
                     </div>
-                </div>
-            `;
-        }).join('');
+                `;
+            }).join('');
+        } else {
+            list.innerHTML = ETSY_VARIATIONS.map((v, i) => {
+                const calc = getCurtainPriceCalculation(v, prod.m2Price, discountRate);
+                return `
+                    <div class="p-2.5 bg-slate-900/70 border border-slate-800 rounded-xl flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-white text-xs">${v.title}</div>
+                            <div class="text-[10px] text-slate-400">${calc.areaM2} m²</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-slate-400 line-through">${formatNumber(calc.originalPrice)} ${symbol}</div>
+                            <div class="text-xs font-black text-emerald-400">${formatNumber(calc.salePrice)} ${symbol}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
     }
 
     document.getElementById('variationDetailModal')?.classList.remove('hidden');
@@ -950,16 +1081,41 @@ function copyAllPricesToClipboard() {
     const discountRate = parseFloat(document.getElementById('discountRateInput')?.value) || 30;
     const symbol = CURRENCIES[currentCurrency].symbol;
 
-    let text = `🦁 ASLAN PERDE - ETSY FİYAT LİSTESİ\n`;
-    text += `Birim Fiyat: ${formatNumber(m2Price)} ${symbol}/m² | İndirim: %${discountRate}\n`;
-    text += `=====================================\n\n`;
+    let text = '';
+    if (selectedCategory === 'SinglePrice') {
+        text = `🏷️ ASLAN TEK FİYAT - ETSY ÜRÜN FİYAT LİSTESİ\n`;
+        text += `Tekil Ürün Liste Fiyatı: ${formatNumber(m2Price)} ${symbol} | İndirim: %${discountRate}\n`;
+        text += `=====================================\n\n`;
 
-    ETSY_VARIATIONS.forEach((v, index) => {
-        const calc = getCurtainPriceCalculation(v, m2Price, discountRate);
-        text += `${index + 1}. ${v.title} (${calc.areaM2} m²)\n`;
-        text += `   - Liste Fiyatı: ${formatNumber(calc.originalPrice)} ${symbol}\n`;
-        text += `   - %${discountRate} İndirimli Satış: ${formatNumber(calc.salePrice)} ${symbol}\n\n`;
-    });
+        ETSY_SINGLE_PRICE_VARIATIONS.forEach((v, index) => {
+            const calc = getSinglePriceCalculation(v, m2Price, discountRate);
+            text += `${index + 1}. ${v.title} (${v.desc})\n`;
+            text += `   - Liste Fiyatı: ${formatNumber(calc.originalPrice)} ${symbol}\n`;
+            text += `   - %${discountRate} İndirimli Satış: ${formatNumber(calc.salePrice)} ${symbol}\n\n`;
+        });
+    } else if (selectedCategory === 'Bedding') {
+        text = `🛏️ ASLAN NEVRESİM - ETSY BEDDING FİYAT LİSTESİ\n`;
+        text += `Crib Baz Fiyat: ${formatNumber(m2Price)} ${symbol} | İndirim: %${discountRate}\n`;
+        text += `=====================================\n\n`;
+
+        ETSY_BEDDING_VARIATIONS.forEach((v, index) => {
+            const calc = getBeddingPriceCalculation(v, m2Price, discountRate);
+            text += `${index + 1}. ${v.title} (${v.sizeDesc})\n`;
+            text += `   - Liste Fiyatı: ${formatNumber(calc.originalPrice)} ${symbol}\n`;
+            text += `   - %${discountRate} İndirimli Satış: ${formatNumber(calc.salePrice)} ${symbol}\n\n`;
+        });
+    } else {
+        text = `🦁 ASLAN PERDE - ETSY FİYAT LİSTESİ\n`;
+        text += `Birim Fiyat: ${formatNumber(m2Price)} ${symbol}/m² | İndirim: %${discountRate}\n`;
+        text += `=====================================\n\n`;
+
+        ETSY_VARIATIONS.forEach((v, index) => {
+            const calc = getCurtainPriceCalculation(v, m2Price, discountRate);
+            text += `${index + 1}. ${v.title} (${calc.areaM2} m²)\n`;
+            text += `   - Liste Fiyatı: ${formatNumber(calc.originalPrice)} ${symbol}\n`;
+            text += `   - %${discountRate} İndirimli Satış: ${formatNumber(calc.salePrice)} ${symbol}\n\n`;
+        });
+    }
 
     navigator.clipboard.writeText(text).then(() => {
         showToast('Tüm fiyat listesi panoya kopyalandı!', 'success');
@@ -992,13 +1148,29 @@ function copyModelPricesToClipboard() {
     const discountRate = parseFloat(document.getElementById('discountRateInput')?.value) || 30;
     const symbol = CURRENCIES[currentCurrency].symbol;
 
-    let text = `🦁 ${prod.name.toUpperCase()}\n`;
-    text += `Birim: ${formatNumber(prod.m2Price)} ${symbol}/m²\n\n`;
-
-    ETSY_VARIATIONS.forEach(v => {
-        const calc = getCurtainPriceCalculation(v, prod.m2Price, discountRate);
-        text += `${v.title}: ${formatNumber(calc.salePrice)} ${symbol} (Liste: ${formatNumber(calc.originalPrice)} ${symbol})\n`;
-    });
+    let text = '';
+    if (prod.category === 'SinglePrice') {
+        text = `🏷️ ${prod.name.toUpperCase()}\n`;
+        text += `Tekil Ürün Liste Fiyatı: ${formatNumber(prod.m2Price)} ${symbol} | İndirim: %${discountRate}\n\n`;
+        ETSY_SINGLE_PRICE_VARIATIONS.forEach(v => {
+            const calc = getSinglePriceCalculation(v, prod.m2Price, discountRate);
+            text += `${v.title} (${v.desc}): ${formatNumber(calc.salePrice)} ${symbol} (Liste: ${formatNumber(calc.originalPrice)} ${symbol})\n`;
+        });
+    } else if (prod.category === 'Bedding') {
+        text = `🛏️ ${prod.name.toUpperCase()}\n`;
+        text += `Crib Baz Fiyat: ${formatNumber(prod.m2Price)} ${symbol} | İndirim: %${discountRate}\n\n`;
+        ETSY_BEDDING_VARIATIONS.forEach(v => {
+            const calc = getBeddingPriceCalculation(v, prod.m2Price, discountRate);
+            text += `${v.title} (${v.sizeDesc}): ${formatNumber(calc.salePrice)} ${symbol} (Liste: ${formatNumber(calc.originalPrice)} ${symbol})\n`;
+        });
+    } else {
+        text = `🦁 ${prod.name.toUpperCase()}\n`;
+        text += `Birim: ${formatNumber(prod.m2Price)} ${symbol}/m² | İndirim: %${discountRate}\n\n`;
+        ETSY_VARIATIONS.forEach(v => {
+            const calc = getCurtainPriceCalculation(v, prod.m2Price, discountRate);
+            text += `${v.title}: ${formatNumber(calc.salePrice)} ${symbol} (Liste: ${formatNumber(calc.originalPrice)} ${symbol})\n`;
+        });
+    }
 
     navigator.clipboard.writeText(text).then(() => {
         showToast('Model fiyat listesi kopyalandı!', 'success');
