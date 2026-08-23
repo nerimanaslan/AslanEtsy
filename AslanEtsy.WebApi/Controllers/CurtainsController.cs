@@ -553,6 +553,15 @@ public class CurtainsController : ControllerBase
                     Note = "Lila / Mor Çok Renkli Motifli Geniş Bohem El Örgüsü Omuz & Alışveriş Çantası",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_tote_bag_lilac.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Turkish Needle Lace Scarf | Traditional Oya Shawl with Floral Leaf Edging | Elegant Women’s Accessory",
+                    M2Price = 1150,
+                    Category = "SinglePrice",
+                    Fabric = "Lila Krep Şifon Kumaş • Renkli İpek İplik El Emeği Geleneksel İğne Oyası (Needle Lace Oya) Detaylı Şal & Eşarp",
+                    Note = "Lila Zemin Üzeri Renkli Yaprak Motifli Geleneksel Türk İğne Oyalı Fular / Şal",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_turkish_needle_lace_scarf_oya.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

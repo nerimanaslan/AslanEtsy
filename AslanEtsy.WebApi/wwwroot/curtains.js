@@ -820,6 +820,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 El Örgüsü Pamuk İplik • Lila Tabanlı Renkli Hanım Dilendi Bey Beğendi Motifli Kol & Tote Çanta',
         note: 'Lila / Mor Çok Renkli Motifli Geniş Bohem El Örgüsü Omuz & Alışveriş Çantası',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_tote_bag_lilac.jpg'
+    },
+    {
+        id: 112,
+        category: 'SinglePrice',
+        name: 'Handmade Turkish Needle Lace Scarf | Traditional Oya Shawl with Floral Leaf Edging | Elegant Women’s Accessory',
+        m2Price: 1150,
+        fabric: 'Lila Krep Şifon Kumaş • Renkli İpek İplik El Emeği Geleneksel İğne Oyası (Needle Lace Oya) Detaylı Şal & Eşarp',
+        note: 'Lila Zemin Üzeri Renkli Yaprak Motifli Geleneksel Türk İğne Oyalı Fular / Şal',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_turkish_needle_lace_scarf_oya.jpg'
     }
 ];
 
