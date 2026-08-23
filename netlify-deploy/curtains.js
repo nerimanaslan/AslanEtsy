@@ -361,12 +361,11 @@ function handleImageSelected(e) {
     reader.readAsDataURL(file);
 }
 
-function handleSaveProduct(e) {
-    e.preventDefault();
+function handleSaveProductDirect() {
     const name = document.getElementById('prodNameInput').value.trim();
     const m2Price = parseFloat(document.getElementById('prodM2PriceInput').value) || 0;
     const fabric = document.getElementById('prodFabricInput').value.trim();
-    const note = document.getElementById('prodNoteInput').value.trim();
+    const note = document.getElementById('prodNoteInput')?.value?.trim() || '';
 
     if (!name || m2Price <= 0) {
         showToast('Lütfen model adı ve m² fiyatını girin!', 'warning');
@@ -378,15 +377,28 @@ function handleSaveProduct(e) {
         id: Date.now(),
         name,
         m2Price,
-        fabric,
+        fabric: fabric || 'Doğal Kumaş',
         note,
         imageUrl: currentSelectedImageBase64 || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
     };
 
     products.unshift(newProduct);
     saveProducts(products);
+
+    // Clear inputs
+    document.getElementById('prodNameInput').value = '';
+    document.getElementById('prodFabricInput').value = '';
+    currentSelectedImageBase64 = null;
+    document.getElementById('imagePreview').classList.add('hidden');
+    document.getElementById('imagePlaceholder').classList.remove('hidden');
+
+    showToast(`"${name}" modeli kataloğa kaydedildi! 🎉`, 'success');
+}
+
+function handleSaveProduct(e) {
+    if (e) e.preventDefault();
+    handleSaveProductDirect();
     closeProductModal();
-    showToast('Perde modeli başarıyla kaydedildi!', 'success');
 }
 
 function deleteProduct(productId) {
