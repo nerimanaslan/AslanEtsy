@@ -435,6 +435,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_dusty_rose_guipure.webp'
     },
     {
+        id: 29,
+        category: 'Bedding',
+        name: 'Ribbons Linen Duvet Cover Set 100% Linen Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Linen • Antrasit & Pudra Pembe Kurdeleli (Ribbons / Bows) Lüks Keten Nevresim Takımı',
+        note: 'Antrasit Gri & Pudra Pembe Siyah Kurdele Detaylı Lüks Keten Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ribbons_linen_duvet_cover_set.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',

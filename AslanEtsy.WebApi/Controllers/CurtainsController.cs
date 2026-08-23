@@ -305,6 +305,16 @@ public class CurtainsController : ControllerBase
                     Note = "Gül Kurusu Lüks Fransız Güpürü & Dantel İşlemeli Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_dusty_rose_guipure.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Ribbons Linen Duvet Cover Set 100% Linen Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Linen • Antrasit & Pudra Pembe Kurdeleli (Ribbons / Bows) Lüks Keten Nevresim Takımı",
+                    Note = "Antrasit Gri & Pudra Pembe Siyah Kurdele Detaylı Lüks Keten Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ribbons_linen_duvet_cover_set.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
