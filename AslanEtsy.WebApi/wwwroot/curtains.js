@@ -802,6 +802,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 El Örgüsü Yumuşak Yün İplik • Gri Zemin Üzeri 3D Pembe Çiçek Aplikeli Tabanlı Babet Patik',
         note: 'Gri Renk 3 Boyutlu Çiçekli Kaymaz Tabanlı El Örgüsü Babet Patik',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_ballet_slippers_grey_flower.jpg'
+    },
+    {
+        id: 110,
+        category: 'SinglePrice',
+        name: 'Muslin Bathrobe | Lightweight Gauze Robe | Soft Spa and Loungewear for Women and Men',
+        m2Price: 2850,
+        fabric: '%100 Organik Pamuk Müslin (4 Katlı Soft Muslin Gauze) • Antrasit / Füme Renk Bornoz & Sabahlık',
+        note: 'Doğal 4 Katlı Organik Müslin Kumaş Kadın & Erkek Unisex Bornoz / Sabahlık',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/muslin_bathrobe_gauze_robe_charcoal.jpg'
     }
 ];
 

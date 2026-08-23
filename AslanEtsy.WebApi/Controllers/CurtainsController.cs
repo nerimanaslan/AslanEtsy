@@ -535,6 +535,15 @@ public class CurtainsController : ControllerBase
                     Note = "Gri Renk 3 Boyutlu Çiçekli Kaymaz Tabanlı El Örgüsü Babet Patik",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_ballet_slippers_grey_flower.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Muslin Bathrobe | Lightweight Gauze Robe | Soft Spa and Loungewear for Women and Men",
+                    M2Price = 2850,
+                    Category = "SinglePrice",
+                    Fabric = "%100 Organik Pamuk Müslin (4 Katlı Soft Muslin Gauze) • Antrasit / Füme Renk Bornoz & Sabahlık",
+                    Note = "Doğal 4 Katlı Organik Müslin Kumaş Kadın & Erkek Unisex Bornoz / Sabahlık",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/muslin_bathrobe_gauze_robe_charcoal.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
