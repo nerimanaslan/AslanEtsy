@@ -363,6 +363,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
     },
     {
+        id: 21,
+        category: 'Bedding',
+        name: 'Duvet Cover Set 100% Cotton, Lace, Embroidered Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Fransız Güpürlü / Dantelli (Lace) & Nakışlı Pembe Nevresim Takımı',
+        note: 'Pudra Pembe Dantel & Nakış İşlemeli Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_pink_lace_embroidered.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',

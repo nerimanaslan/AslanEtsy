@@ -225,6 +225,16 @@ public class CurtainsController : ControllerBase
                     Note = "Crib, Toddler, Twin, Double, Queen, King Yatak Ölçüleri",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Duvet Cover Set 100% Cotton, Lace, Embroidered Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Fransız Güpürlü / Dantelli (Lace) & Nakışlı Pembe Nevresim Takımı",
+                    Note = "Pudra Pembe Dantel & Nakış İşlemeli Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_pink_lace_embroidered.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
