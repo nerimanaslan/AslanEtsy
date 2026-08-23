@@ -375,6 +375,16 @@ public class CurtainsController : ControllerBase
                     Note = "Pudra Toz Pembe Kat Kat Fırfır Detaylı Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_dusty_pink_layered.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Muslin Linen Duvet Cover Set 100% Linen Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Linen / Muslin • Pudra Pembe Krinkıl Müslin & Keten Dokulu (Muslin Linen) Lüks Nevresim Takımı",
+                    Note = "Pudra Pembe Krinkıl Müslin Dokulu Yumuşacık Organik Keten Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/muslin_linen_duvet_cover_set_pink.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

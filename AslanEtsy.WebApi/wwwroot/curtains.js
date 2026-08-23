@@ -498,6 +498,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_dusty_pink_layered.webp'
     },
     {
+        id: 36,
+        category: 'Bedding',
+        name: 'Muslin Linen Duvet Cover Set 100% Linen Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Linen / Muslin • Pudra Pembe Krinkıl Müslin & Keten Dokulu (Muslin Linen) Lüks Nevresim Takımı',
+        note: 'Pudra Pembe Krinkıl Müslin Dokulu Yumuşacık Organik Keten Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/muslin_linen_duvet_cover_set_pink.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
