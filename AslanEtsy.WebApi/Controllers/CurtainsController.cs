@@ -295,6 +295,16 @@ public class CurtainsController : ControllerBase
                     Note = "İsim Nakışlı Gri Fırfırlı Degrade Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_embroidered_ruffled_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Duvet Cover Set 100% Cotton, Embroidered Organic Fabric (Dusty Rose)",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Gül Kurusu / Pudra Lüks Fransız Güpürlü & İşlemeli Nevresim Takımı",
+                    Note = "Gül Kurusu Lüks Fransız Güpürü & Dantel İşlemeli Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_dusty_rose_guipure.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

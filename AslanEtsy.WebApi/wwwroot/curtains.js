@@ -426,6 +426,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_embroidered_ruffled_bedding.webp'
     },
     {
+        id: 28,
+        category: 'Bedding',
+        name: 'Duvet Cover Set 100% Cotton, Embroidered Organic Fabric (Dusty Rose)',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Gül Kurusu / Pudra Lüks Fransız Güpürlü & İşlemeli Nevresim Takımı',
+        note: 'Gül Kurusu Lüks Fransız Güpürü & Dantel İşlemeli Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/duvet_cover_set_dusty_rose_guipure.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
