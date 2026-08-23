@@ -291,9 +291,10 @@ function renderProductsCatalog() {
             <!-- Product Image -->
             <div class="w-full sm:w-32 h-36 rounded-2xl bg-slate-800 overflow-hidden relative flex-shrink-0">
                 <img src="${p.imageUrl || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'}" alt="${p.name}" class="w-full h-full object-cover">
-                <div class="absolute bottom-2 left-2 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold text-orange-400">
-                    ${formatNumber(p.m2Price)} ${symbol} / m²
-                </div>
+                <button onclick="openEditProductModal(${p.id})" class="absolute bottom-2 left-2 bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold text-orange-400 border border-orange-500/30 flex items-center gap-1 hover:bg-orange-500 hover:text-white transition" title="Fiyatı Değiştir">
+                    <span>${formatNumber(p.m2Price)} ${symbol} / m²</span>
+                    <i class="fa-solid fa-pencil text-[9px]"></i>
+                </button>
             </div>
 
             <!-- Product Details -->
@@ -301,9 +302,16 @@ function renderProductsCatalog() {
                 <div>
                     <div class="flex items-start justify-between">
                         <h3 class="font-extrabold text-white text-sm">${p.name}</h3>
-                        <button onclick="deleteProduct(${p.id})" class="text-slate-500 hover:text-rose-400 text-xs p-1"><i class="fa-solid fa-trash-can"></i></button>
+                        <div class="flex items-center gap-1">
+                            <button onclick="openEditProductModal(${p.id})" class="text-orange-400 hover:text-orange-300 p-1.5 bg-orange-500/10 rounded-lg" title="Fiyatı & Modeli Düzenle">
+                                <i class="fa-solid fa-pencil text-xs"></i>
+                            </button>
+                            <button onclick="deleteProduct(${p.id})" class="text-slate-500 hover:text-rose-400 p-1.5 bg-rose-500/10 rounded-lg" title="Sil">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
                     </div>
-                    ${p.fabric ? `<div class="text-[11px] text-orange-400 font-semibold mt-0.5"><i class="fa-solid fa-layer-group"></i> ${p.fabric}</div>` : ''}
+                    ${p.fabric ? `<div class="text-[11px] text-slate-300 font-semibold mt-0.5"><i class="fa-solid fa-layer-group text-orange-400"></i> ${p.fabric}</div>` : ''}
                     ${p.note ? `<p class="text-[11px] text-slate-400 mt-1 line-clamp-2">${p.note}</p>` : ''}
                 </div>
 
@@ -311,10 +319,11 @@ function renderProductsCatalog() {
                 <div class="pt-2 flex items-center gap-2">
                     <button onclick="openProductPricingModal(${p.id})" class="flex-1 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-1.5 transition">
                         <i class="fa-solid fa-list-ol"></i>
-                        <span>13 Varyasyon Fiyatını Aç</span>
+                        <span>13 Varyasyon Fiyatı</span>
                     </button>
-                    <button onclick="loadProductToCalculator(${p.id})" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-xl border border-slate-700 transition" title="Hesaplayıcıya Yükle">
-                        <i class="fa-solid fa-calculator"></i>
+                    <button onclick="openEditProductModal(${p.id})" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-orange-400 font-bold text-xs rounded-xl border border-orange-500/40 transition flex items-center gap-1">
+                        <i class="fa-solid fa-tag"></i>
+                        <span>Fiyatı Güncelle</span>
                     </button>
                 </div>
             </div>
@@ -322,9 +331,33 @@ function renderProductsCatalog() {
     `).join('');
 }
 
+function openEditProductModal(productId) {
+    const products = getStoredProducts();
+    const prod = products.find(p => p.id === productId);
+    if (!prod) return;
+
+    document.getElementById('editProductId').value = prod.id;
+    document.getElementById('modalProductTitle').innerHTML = '<i class="fa-solid fa-pencil text-orange-400"></i><span>m² Fiyatı & Modeli Güncelle</span>';
+    document.getElementById('prodNameInput').value = prod.name;
+    document.getElementById('prodM2PriceInput').value = prod.m2Price;
+    document.getElementById('prodFabricInput').value = prod.fabric || '';
+    document.getElementById('prodNoteInput').value = prod.note || '';
+
+    currentSelectedImageBase64 = prod.imageUrl;
+    const preview = document.getElementById('imagePreview');
+    const placeholder = document.getElementById('imagePlaceholder');
+    if (preview && placeholder && prod.imageUrl) {
+        preview.src = prod.imageUrl;
+        preview.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+    }
+
+    document.getElementById('productModal')?.classList.remove('hidden');
+}
+
 function openNewProductModal() {
     document.getElementById('editProductId').value = '';
-    document.getElementById('modalProductTitle').innerText = 'Yeni Perde Modeli Ekle';
+    document.getElementById('modalProductTitle').innerHTML = '<i class="fa-solid fa-plus-circle text-orange-400"></i><span>Yeni Perde Modeli Ekle</span>';
     document.getElementById('prodNameInput').value = '';
     document.getElementById('prodM2PriceInput').value = document.getElementById('m2PriceInput').value || 4000;
     document.getElementById('prodFabricInput').value = '';
