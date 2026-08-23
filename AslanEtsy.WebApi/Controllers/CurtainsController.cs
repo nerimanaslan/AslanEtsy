@@ -447,6 +447,15 @@ public class CurtainsController : ControllerBase
                     CreatedAtUtc = DateTime.UtcNow
                 },
                 {
+                    Name = "Plaid Bedding Set | Classic Checkered Duvet Cover Set | Cozy Bedroom Decor",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton Satin • Mavi & Gri Ekoseli / Kare Desenli (Plaid Checkered) Nevresim Takımı",
+                    Note = "Klasik Ekoseli Mavi ve Gri Çift Taraflı Pamuk Saten Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/plaid_checkered_duvet_cover_set.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                {
                     Name = "2li Nakışlı Organik Pamuk Yastık Kılıfı Seti (50x75 cm)",
                     M2Price = 1500,
                     Category = "SinglePrice",

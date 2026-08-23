@@ -632,6 +632,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/handmade_lace_pink_cotton_bedding.jpg'
     },
     {
+        id: 43,
+        category: 'Bedding',
+        name: 'Plaid Bedding Set | Classic Checkered Duvet Cover Set | Cozy Bedroom Decor',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton Satin • Mavi & Gri Ekoseli / Kare Desenli (Plaid Checkered) Nevresim Takımı',
+        note: 'Klasik Ekoseli Mavi ve Gri Çift Taraflı Pamuk Saten Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/plaid_checkered_duvet_cover_set.jpg'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
