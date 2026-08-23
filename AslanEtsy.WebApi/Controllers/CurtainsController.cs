@@ -508,6 +508,15 @@ public class CurtainsController : ControllerBase
                     Note = "Saks Mavisi Lüks Kadife Tüylü ve Boncuklu Şık Ev Ayakkabısı / Babet",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_handmade_ballet_slippers_blue.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Knitted Ballet Slippers with Faux Fur Pom-Poms and Pearl Flower Detail | Cozy House Shoes",
+                    M2Price = 950,
+                    Category = "SinglePrice",
+                    Fabric = "%100 El Örgüsü Yumuşak Yün İplik • Bordo Kürk Ponpon ve İnci Çiçek Detaylı Babet Patik",
+                    Note = "Bordo El Örgüsü Kürk Ponponlu ve İnci Çiçekli Çeyizlik Babet Patik",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_knitted_ballet_slippers_burgundy.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

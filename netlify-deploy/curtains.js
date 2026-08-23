@@ -775,6 +775,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: 'Lüks Kadife (Velvet) • Saks Mavisi Tüy & El İşlemesi Boncuk Çiçek Detaylı Babet',
         note: 'Saks Mavisi Lüks Kadife Tüylü ve Boncuklu Şık Ev Ayakkabısı / Babet',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_handmade_ballet_slippers_blue.jpg'
+    },
+    {
+        id: 108,
+        category: 'SinglePrice',
+        name: 'Handmade Knitted Ballet Slippers with Faux Fur Pom-Poms and Pearl Flower Detail | Cozy House Shoes',
+        m2Price: 950,
+        fabric: '%100 El Örgüsü Yumuşak Yün İplik • Bordo Kürk Ponpon ve İnci Çiçek Detaylı Babet Patik',
+        note: 'Bordo El Örgüsü Kürk Ponponlu ve İnci Çiçekli Çeyizlik Babet Patik',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_knitted_ballet_slippers_burgundy.jpg'
     }
 ];
 
