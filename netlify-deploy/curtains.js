@@ -17,6 +17,18 @@ const ETSY_VARIATIONS = [
     { id: 13, title: 'W138/L106 inch - 2 PCS', widthInch: 138, lengthInch: 106, pieces: 2 }
 ];
 
+// Standard 8 Etsy Bedding (Nevresim) Variations
+const ETSY_BEDDING_VARIATIONS = [
+    { id: 1, title: 'Crib IN', sizeDesc: 'Duvet: 39×55" (100×140cm) • 1x Pillow: 14×18"', multiplier: 1.0000 },
+    { id: 2, title: 'Toddler IN', sizeDesc: 'Duvet: 47×59" (120×150cm) • 1x Pillow: 16×24"', multiplier: 1.0976 },
+    { id: 3, title: 'Twin IN', sizeDesc: 'Duvet: 66×86" (170×220cm) • 1x Pillow: 20×30"', multiplier: 1.1957 },
+    { id: 4, title: 'Double IN', sizeDesc: 'Duvet: 80×86" (200×220cm) • 2x Pillows: 20×30"', multiplier: 1.2959 },
+    { id: 5, title: 'Queen IN', sizeDesc: 'Duvet: 90×90" (230×230cm) • 2x Pillows: 20×30"', multiplier: 1.4013 },
+    { id: 6, title: 'King IN', sizeDesc: 'Duvet: 104×90" (260×230cm) • 2x Pillows: 20×36"', multiplier: 1.4747 },
+    { id: 7, title: 'Extra 1× Pillowcase IN', sizeDesc: '1 Adet Yastık Kılıfı: 20×30" (50×75cm)', multiplier: 0.0658 },
+    { id: 8, title: 'Extra 2× Pillowcase IN', sizeDesc: '2 Adet Yastık Kılıfı: 20×30" (50×75cm)', multiplier: 0.1077 }
+];
+
 // Currencies definition
 const CURRENCIES = {
     'TL': { symbol: '₺', name: 'Türk Lirası' },
@@ -26,7 +38,8 @@ const CURRENCIES = {
 };
 
 let currentCurrency = 'TL';
-let currentMobileTab = 'calculator';
+let selectedCategory = 'Curtain'; // 'Curtain' or 'Bedding'
+let currentMobileTab = 'catalog';
 let customUnit = 'inch';
 let customPieces = 1;
 let currentActiveModelForModal = null;
@@ -79,7 +92,45 @@ function getCurtainPriceCalculation(variation, m2Price, discountRate = 30) {
     };
 }
 
-// Calculate all 13 prices in real-time
+function getBeddingPriceCalculation(variation, baseCribPrice, discountRate = 30) {
+    const originalPrice = Math.round(baseCribPrice * variation.multiplier);
+    const salePrice = Math.round(originalPrice * (1 - (discountRate / 100)));
+    const savings = originalPrice - salePrice;
+    return {
+        originalPrice,
+        salePrice,
+        savings,
+        discountRate
+    };
+}
+
+function switchCategory(cat) {
+    selectedCategory = cat;
+    const curtainBtn = document.getElementById('catBtnCurtain');
+    const beddingBtn = document.getElementById('catBtnBedding');
+    const m2Input = document.getElementById('m2PriceInput');
+    const heroPriceLabel = document.getElementById('heroPriceLabel');
+    const tabLabelCalc = document.getElementById('tabLabelCalculator');
+
+    if (cat === 'Bedding') {
+        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition';
+        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-xs font-extrabold bg-pink-600 text-white flex items-center justify-center gap-1.5 transition shadow';
+        if (m2Input && (m2Input.value === '4000' || m2Input.value === '')) m2Input.value = '22000';
+        if (heroPriceLabel) heroPriceLabel.innerText = 'CRIB BAZ TAKIM FİYATI';
+        if (tabLabelCalc) tabLabelCalc.innerText = '📐 8 Yatak Ölçüsü';
+    } else {
+        if (curtainBtn) curtainBtn.className = 'flex-1 py-2 rounded-xl text-xs font-extrabold bg-orange-600 text-white flex items-center justify-center gap-1.5 transition shadow';
+        if (beddingBtn) beddingBtn.className = 'flex-1 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white flex items-center justify-center gap-1.5 transition';
+        if (m2Input && m2Input.value === '22000') m2Input.value = '4000';
+        if (heroPriceLabel) heroPriceLabel.innerText = 'm² BİRİM FİYATI';
+        if (tabLabelCalc) tabLabelCalc.innerText = '📐 13 Ölçü Tablosu';
+    }
+
+    calculateAllPrices();
+    renderProductsCatalog();
+}
+
+// Calculate all variations in real-time
 function calculateAllPrices() {
     const m2Input = document.getElementById('m2PriceInput');
     const discountInput = document.getElementById('discountRateInput');
@@ -87,50 +138,85 @@ function calculateAllPrices() {
     
     if (!m2Input || !container) return;
 
-    const m2Price = parseFloat(m2Input.value) || 0;
+    const basePrice = parseFloat(m2Input.value) || 0;
     const discountRate = parseFloat(discountInput?.value) || 30;
     const symbol = CURRENCIES[currentCurrency].symbol;
 
-    container.innerHTML = ETSY_VARIATIONS.map((v, index) => {
-        const calc = getCurtainPriceCalculation(v, m2Price, discountRate);
-        const widthCm = Math.round(v.widthInch * 2.54);
-        const lengthCm = Math.round(v.lengthInch * 2.54);
-
-        return `
-            <div class="bg-slate-850 hover:bg-slate-800/90 transition border border-slate-800 rounded-2xl p-3.5 flex items-center justify-between shadow-sm">
-                <!-- Left: Variation Name & Dimensions -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-xl bg-orange-500/10 text-orange-400 font-extrabold text-xs flex items-center justify-center border border-orange-500/20">
-                        ${index + 1}
+    if (selectedCategory === 'Bedding') {
+        container.innerHTML = ETSY_BEDDING_VARIATIONS.map((v, index) => {
+            const calc = getBeddingPriceCalculation(v, basePrice, discountRate);
+            return `
+                <div class="bg-slate-850 hover:bg-slate-800/90 transition border border-slate-800 rounded-2xl p-3.5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-pink-500/15 text-pink-400 font-extrabold text-xs flex items-center justify-center border border-pink-500/30">
+                            ${index + 1}
+                        </div>
+                        <div>
+                            <div class="font-bold text-white text-xs flex items-center gap-1.5">
+                                <span>${v.title}</span>
+                            </div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">
+                                ${v.sizeDesc}
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="font-bold text-white text-xs flex items-center gap-1.5">
-                            <span>${v.title}</span>
-                            ${v.pieces > 1 ? '<span class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">Çift Kanat</span>' : ''}
+
+                    <div class="text-right flex items-center gap-3">
+                        <div>
+                            <div class="text-[11px] text-slate-400 font-semibold line-through">
+                                ${formatNumber(calc.originalPrice)} ${symbol}
+                            </div>
+                            <div class="text-sm font-black text-pink-400">
+                                ${formatNumber(calc.salePrice)} ${symbol}
+                            </div>
                         </div>
-                        <div class="text-[11px] text-slate-400 mt-0.5">
-                            ${v.isSample ? 'Kumaş Numune Paketi' : `${widthCm} × ${lengthCm} cm • ${calc.areaM2} m²`}
-                        </div>
+                        <button onclick="copySingleVariationPrice('${v.title}', ${calc.originalPrice}, ${calc.salePrice})" class="p-2 text-slate-400 hover:text-pink-400 hover:bg-slate-700/60 rounded-lg transition" title="Fiyatı Kopyala">
+                            <i class="fa-solid fa-copy text-xs"></i>
+                        </button>
                     </div>
                 </div>
+            `;
+        }).join('');
+    } else {
+        container.innerHTML = ETSY_VARIATIONS.map((v, index) => {
+            const calc = getCurtainPriceCalculation(v, basePrice, discountRate);
+            const widthCm = Math.round(v.widthInch * 2.54);
+            const lengthCm = Math.round(v.lengthInch * 2.54);
 
-                <!-- Right: Prices (Original vs Discounted) -->
-                <div class="text-right flex items-center gap-3">
-                    <div>
-                        <div class="text-[11px] text-slate-400 font-semibold line-through">
-                            ${formatNumber(calc.originalPrice)} ${symbol}
+            return `
+                <div class="bg-slate-850 hover:bg-slate-800/90 transition border border-slate-800 rounded-2xl p-3.5 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-orange-500/10 text-orange-400 font-extrabold text-xs flex items-center justify-center border border-orange-500/20">
+                            ${index + 1}
                         </div>
-                        <div class="text-sm font-black text-emerald-400">
-                            ${formatNumber(calc.salePrice)} ${symbol}
+                        <div>
+                            <div class="font-bold text-white text-xs flex items-center gap-1.5">
+                                <span>${v.title}</span>
+                                ${v.pieces > 1 ? '<span class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">Çift Kanat</span>' : ''}
+                            </div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">
+                                ${v.isSample ? 'Kumaş Numune Paketi' : `${widthCm} × ${lengthCm} cm • ${calc.areaM2} m²`}
+                            </div>
                         </div>
                     </div>
-                    <button onclick="copySingleVariationPrice('${v.title}', ${calc.originalPrice}, ${calc.salePrice})" class="p-2 text-slate-400 hover:text-orange-400 hover:bg-slate-700/60 rounded-lg transition" title="Fiyatı Kopyala">
-                        <i class="fa-solid fa-copy text-xs"></i>
-                    </button>
+
+                    <div class="text-right flex items-center gap-3">
+                        <div>
+                            <div class="text-[11px] text-slate-400 font-semibold line-through">
+                                ${formatNumber(calc.originalPrice)} ${symbol}
+                            </div>
+                            <div class="text-sm font-black text-emerald-400">
+                                ${formatNumber(calc.salePrice)} ${symbol}
+                            </div>
+                        </div>
+                        <button onclick="copySingleVariationPrice('${v.title}', ${calc.originalPrice}, ${calc.salePrice})" class="p-2 text-slate-400 hover:text-orange-400 hover:bg-slate-700/60 rounded-lg transition" title="Fiyatı Kopyala">
+                            <i class="fa-solid fa-copy text-xs"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        `;
-    }).join('');
+            `;
+        }).join('');
+    }
 }
 
 function setM2Price(price) {
@@ -243,6 +329,7 @@ async function syncWithCloud() {
             const formatted = cloudList.map(p => ({
                 id: p.id,
                 name: p.name,
+                category: p.category || 'Curtain',
                 m2Price: Number(p.m2Price),
                 fabric: p.fabric || '',
                 note: p.note || '',
@@ -259,6 +346,7 @@ async function syncWithCloud() {
 const DEFAULT_WEB_PRODUCTS = [
     {
         id: 1,
+        category: 'Curtain',
         name: 'Organic Thick Bamboo Ruffle Curtains - Custom Size, Sold in Pairs.',
         m2Price: 4000,
         fabric: '%100 Organic Thick Bamboo • Fırfırlı (Ruffle)',
@@ -267,6 +355,16 @@ const DEFAULT_WEB_PRODUCTS = [
     },
     {
         id: 2,
+        category: 'Bedding',
+        name: 'Heart Pattern Organic Cotton Bedding Set - Custom Size Duvet Cover',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Kırmızı Kalp Desenli Nevresim Takımı',
+        note: 'Crib, Toddler, Twin, Double, Queen, King Yatak Ölçüleri',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
+    },
+    {
+        id: 3,
+        category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Çizgili Karartma (Blackout)',
@@ -274,7 +372,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_blackout.jpg'
     },
     {
-        id: 3,
+        id: 4,
+        category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size (Boydan)',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Boydan Dökümlü Karartma',
@@ -282,7 +381,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/classic_linen_striped_full_length.jpg'
     },
     {
-        id: 4,
+        id: 5,
+        category: 'Curtain',
         name: 'Densely Pleated Linen Blackout Curtain Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Sık Pileli (Densely Pleated)',
@@ -290,7 +390,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/densely_pleated_linen_blackout.jpg'
     },
     {
-        id: 5,
+        id: 6,
+        category: 'Curtain',
         name: 'American Style Dense Pleated Linen Blackout Curtain in Organic Fabric - Customized Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Amerikan / Pinch Pleat Pileli',
@@ -298,7 +399,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/american_style_dense_pleated_linen.jpg'
     },
     {
-        id: 6,
+        id: 7,
+        category: 'Curtain',
         name: 'Decorative Frequent Pleated Linen Blackout Curtain Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Düğme Detaylı Sık Pileli',
@@ -306,7 +408,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/decorative_frequent_pleated_linen.jpg'
     },
     {
-        id: 7,
+        id: 8,
+        category: 'Curtain',
         name: 'Linen Blackout Lining Curtains, Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Kuşaklı (Tab Top) Karartma Astarlı',
@@ -314,7 +417,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/linen_blackout_lining_curtains.jpg'
     },
     {
-        id: 8,
+        id: 9,
+        category: 'Curtain',
         name: 'Tufted Liner Linen Blackout Curtains, Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Yan Püsküllü (Tufted/Tassel)',
@@ -322,7 +426,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/tufted_liner_linen_blackout.jpg'
     },
     {
-        id: 9,
+        id: 10,
+        category: 'Curtain',
         name: 'Dusty Blue Pompom Trim Linen Curtains, Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: '%100 Organic Linen • Buz Mavisi Ponponlu Fırfırlı',
@@ -330,7 +435,8 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/curtains/dusty_blue_pompom_trim_linen.jpg'
     },
     {
-        id: 10,
+        id: 11,
+        category: 'Curtain',
         name: 'Suede Velvet Blackout Lining Curtain Organic Fabric - Custom Size',
         m2Price: 4000,
         fabric: 'Lüks Süet Kadife • Karartma Astarlı (Blackout Lining)',
@@ -367,11 +473,12 @@ function renderProductsCatalog() {
     const grid = document.getElementById('productsCatalogGrid');
     if (!grid) return;
 
-    const products = getStoredProducts();
+    const allProducts = getStoredProducts();
+    const products = allProducts.filter(p => (p.category || 'Curtain') === selectedCategory);
     const symbol = CURRENCIES[currentCurrency].symbol;
 
     if (products.length === 0) {
-        grid.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">Henüz eklenmiş perde modeli yok. "+ Model Ekle" butonuna dokunarak başlayabilirsiniz.</div>`;
+        grid.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">Bu kategoride henüz kayıtlı model yok. "+ Model Ekle" butonuna dokunarak hemen ekleyebilirsiniz.</div>`;
         return;
     }
 
@@ -380,8 +487,8 @@ function renderProductsCatalog() {
             <!-- Product Image -->
             <div class="w-full sm:w-32 h-36 rounded-2xl bg-slate-800 overflow-hidden relative flex-shrink-0">
                 <img src="${p.imageUrl || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'}" alt="${p.name}" class="w-full h-full object-cover">
-                <button onclick="openEditProductModal(${p.id})" class="absolute bottom-2 left-2 bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold text-orange-400 border border-orange-500/30 flex items-center gap-1 hover:bg-orange-500 hover:text-white transition" title="Fiyatı Değiştir">
-                    <span>${formatNumber(p.m2Price)} ${symbol} / m²</span>
+                <button onclick="openEditProductModal(${p.id})" class="absolute bottom-2 left-2 bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold ${p.category === 'Bedding' ? 'text-pink-400 border-pink-500/30' : 'text-orange-400 border-orange-500/30'} border flex items-center gap-1 hover:bg-orange-500 hover:text-white transition" title="Fiyatı Değiştir">
+                    <span>${formatNumber(p.m2Price)} ${symbol} ${p.category === 'Bedding' ? '/ Baz Takım' : '/ m²'}</span>
                     <i class="fa-solid fa-pencil text-[9px]"></i>
                 </button>
             </div>
@@ -497,10 +604,13 @@ async function handleSaveProductDirect() {
 
     const payload = {
         name,
+        category: selectedCategory,
         m2Price,
-        fabric: fabric || 'Doğal Kumaş',
+        fabric: fabric || (selectedCategory === 'Bedding' ? '%100 Organik Pamuk Saten' : 'Doğal Kumaş'),
         note,
-        imageUrl: currentSelectedImageBase64 || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
+        imageUrl: currentSelectedImageBase64 || (selectedCategory === 'Bedding' 
+            ? 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/heart_pattern_organic_cotton_bedding.png'
+            : 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600')
     };
 
     try {

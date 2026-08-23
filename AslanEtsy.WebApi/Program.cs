@@ -66,6 +66,7 @@ using (var scope = app.Services.CreateScope())
             ""Id"" INTEGER NOT NULL CONSTRAINT ""PK_CurtainProducts"" PRIMARY KEY AUTOINCREMENT,
             ""Name"" TEXT NOT NULL,
             ""M2Price"" TEXT NOT NULL,
+            ""Category"" TEXT NOT NULL DEFAULT 'Curtain',
             ""Fabric"" TEXT NULL,
             ""Note"" TEXT NULL,
             ""ImageUrl"" TEXT NULL,
@@ -74,6 +75,12 @@ using (var scope = app.Services.CreateScope())
             ""IsDeleted"" INTEGER NOT NULL DEFAULT 0
         );
     ");
+
+    try
+    {
+        await context.Database.ExecuteSqlRawAsync(@"ALTER TABLE ""CurtainProducts"" ADD COLUMN ""Category"" TEXT NOT NULL DEFAULT 'Curtain';");
+    }
+    catch { /* Column already exists */ }
 }
 
 // Swagger UI
