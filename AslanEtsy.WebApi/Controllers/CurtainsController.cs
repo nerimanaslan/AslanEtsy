@@ -365,6 +365,16 @@ public class CurtainsController : ControllerBase
                     Note = "Çizgili ve Yan Bağcıklı/Fiyonklu Degrade Lüks Keten Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ribbons_linen_striped_bows_duvet_cover_set.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Ruffled Duvet Cover Set 100% Cotton, Embroidered Organic Fabric (Dusty Pink)",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Toz Pembe / Pudra Çok Katmanlı Fırfırlı (Multi-Layered Ruffles) Lüks Pamuk Nevresim Takımı",
+                    Note = "Pudra Toz Pembe Kat Kat Fırfır Detaylı Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_dusty_pink_layered.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
