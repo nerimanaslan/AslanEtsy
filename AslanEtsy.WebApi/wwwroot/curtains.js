@@ -225,40 +225,39 @@ function calculateCustomSize() {
     document.getElementById('customDisplaySalePrice').innerText = `${formatNumber(salePrice)} ${symbol}`;
 }
 
-// ================= 3. PRODUCTS & CATALOG MANAGEMENT =================
+// ================= 3. PRODUCTS & CLOUD DATABASE SYNC =================
 const STORAGE_KEY_PRODUCTS = 'ASLAN_PERDE_PRODUCTS';
 
-function initDefaultProducts() {
-    const existing = localStorage.getItem(STORAGE_KEY_PRODUCTS);
-    if (!existing) {
-        const defaultProducts = [
-            {
-                id: 1,
-                name: 'Kırmızı Çizgili Keten Fon Perde',
-                m2Price: 4000,
-                fabric: '%100 Saf Pamuk & Keten Karışımı',
-                note: 'Etsy Çok Satan • Rustik & Modern Çizgili Doku',
-                imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80'
-            },
-            {
-                id: 2,
-                name: 'Bergonya / Bordo Keten Dökümlü Perde',
-                m2Price: 4500,
-                fabric: '%100 Doğal Taşlanmış Keten',
-                note: 'Özel Koyu Şarap / Cranberry Renk Tonu',
-                imageUrl: 'https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?w=600&auto=format&fit=crop&q=80'
-            },
-            {
-                id: 3,
-                name: 'Naturel Bej Keten Tül Perde',
-                m2Price: 3200,
-                fabric: 'Doğal İpek & Keten Dokulu Tül',
-                note: 'Güneş Işığını Yumuşatan Ferah Doku',
-                imageUrl: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&auto=format&fit=crop&q=80'
-            }
-        ];
-        localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(defaultProducts));
+function getCurtainsApiUrl() {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return `${window.location.protocol}//${window.location.host}/api/curtains`;
     }
+    return 'https://aslanetsy.onrender.com/api/curtains';
+}
+
+async function syncWithCloud() {
+    try {
+        const res = await fetch(getCurtainsApiUrl());
+        if (res.ok) {
+            const cloudList = await res.json();
+            const formatted = cloudList.map(p => ({
+                id: p.id,
+                name: p.name,
+                m2Price: Number(p.m2Price),
+                fabric: p.fabric || '',
+                note: p.note || '',
+                imageUrl: p.imageUrl || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
+            }));
+            localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(formatted));
+            renderProductsCatalog();
+        }
+    } catch (e) {
+        console.log('Cloud sync offline or error:', e);
+    }
+}
+
+function initDefaultProducts() {
+    syncWithCloud();
 }
 
 function getStoredProducts() {
@@ -394,7 +393,8 @@ function handleImageSelected(e) {
     reader.readAsDataURL(file);
 }
 
-function handleSaveProductDirect() {
+async function handleSaveProductDirect() {
+    const editId = document.getElementById('editProductId')?.value;
     const name = document.getElementById('prodNameInput').value.trim();
     const m2Price = parseFloat(document.getElementById('prodM2PriceInput').value) || 0;
     const fabric = document.getElementById('prodFabricInput').value.trim();
@@ -405,9 +405,7 @@ function handleSaveProductDirect() {
         return;
     }
 
-    const products = getStoredProducts();
-    const newProduct = {
-        id: Date.now(),
+    const payload = {
         name,
         m2Price,
         fabric: fabric || 'Doğal Kumaş',
@@ -415,31 +413,65 @@ function handleSaveProductDirect() {
         imageUrl: currentSelectedImageBase64 || 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600'
     };
 
-    products.unshift(newProduct);
-    saveProducts(products);
+    try {
+        if (editId) {
+            // Update
+            await fetch(`${getCurtainsApiUrl()}/${editId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            showToast(`"${name}" bulutta güncellendi! ☁️`, 'success');
+        } else {
+            // Create
+            await fetch(getCurtainsApiUrl(), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            showToast(`"${name}" buluta kaydedildi! ☁️🎉`, 'success');
+        }
+        await syncWithCloud();
+    } catch (e) {
+        // Fallback local
+        const products = getStoredProducts();
+        if (editId) {
+            const idx = products.findIndex(p => p.id == editId);
+            if (idx !== -1) products[idx] = { ...products[idx], ...payload };
+        } else {
+            products.unshift({ id: Date.now(), ...payload });
+        }
+        saveProducts(products);
+        showToast(`"${name}" kaydedildi!`, 'success');
+    }
 
     // Clear inputs
+    if (document.getElementById('editProductId')) document.getElementById('editProductId').value = '';
     document.getElementById('prodNameInput').value = '';
     document.getElementById('prodFabricInput').value = '';
     currentSelectedImageBase64 = null;
-    document.getElementById('imagePreview').classList.add('hidden');
-    document.getElementById('imagePlaceholder').classList.remove('hidden');
-
-    showToast(`"${name}" modeli kataloğa kaydedildi! 🎉`, 'success');
+    document.getElementById('imagePreview')?.classList.add('hidden');
+    document.getElementById('imagePlaceholder')?.classList.remove('hidden');
+    closeProductModal();
 }
 
 function handleSaveProduct(e) {
     if (e) e.preventDefault();
     handleSaveProductDirect();
-    closeProductModal();
 }
 
-function deleteProduct(productId) {
+async function deleteProduct(productId) {
     if (!confirm('Bu perde modelini silmek istediğinize emin misiniz?')) return;
-    let products = getStoredProducts();
-    products = products.filter(p => p.id !== productId);
-    saveProducts(products);
-    showToast('Model silindi.', 'info');
+    try {
+        await fetch(`${getCurtainsApiUrl()}/${productId}`, { method: 'DELETE' });
+        await syncWithCloud();
+        showToast('Model buluttan silindi.', 'info');
+    } catch {
+        let products = getStoredProducts();
+        products = products.filter(p => p.id !== productId);
+        saveProducts(products);
+        showToast('Model silindi.', 'info');
+    }
 }
 
 function loadProductToCalculator(productId) {

@@ -14,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<OrderTracking> OrderTrackings => Set<OrderTracking>();
     public DbSet<SyncLog> SyncLogs => Set<SyncLog>();
+    public DbSet<CurtainProduct> CurtainProducts => Set<CurtainProduct>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +26,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<OrderItem>().HasQueryFilter(e => !e.IsDeleted);
         modelBuilder.Entity<OrderTracking>().HasQueryFilter(e => !e.IsDeleted);
         modelBuilder.Entity<SyncLog>().HasQueryFilter(e => !e.IsDeleted);
+        modelBuilder.Entity<CurtainProduct>().HasQueryFilter(e => !e.IsDeleted);
 
         // EtsyAccount config
         modelBuilder.Entity<EtsyAccount>(entity =>

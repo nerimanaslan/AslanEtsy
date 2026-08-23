@@ -59,6 +59,21 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await context.Database.EnsureCreatedAsync();
+
+    // Ensure CurtainProducts table exists
+    await context.Database.ExecuteSqlRawAsync(@"
+        CREATE TABLE IF NOT EXISTS ""CurtainProducts"" (
+            ""Id"" INTEGER NOT NULL CONSTRAINT ""PK_CurtainProducts"" PRIMARY KEY AUTOINCREMENT,
+            ""Name"" TEXT NOT NULL,
+            ""M2Price"" TEXT NOT NULL,
+            ""Fabric"" TEXT NULL,
+            ""Note"" TEXT NULL,
+            ""ImageUrl"" TEXT NULL,
+            ""CreatedAtUtc"" TEXT NOT NULL,
+            ""UpdatedAtUtc"" TEXT NULL,
+            ""IsDeleted"" INTEGER NOT NULL DEFAULT 0
+        );
+    ");
 }
 
 // Swagger UI
