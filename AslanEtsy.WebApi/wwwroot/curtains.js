@@ -521,13 +521,41 @@ function copyModelPricesToClipboard() {
     });
 }
 
+// Touch Swipe Navigation for Mobile Web
+let touchStartX = 0;
+let touchEndX = 0;
+const TABS_ORDER = ['catalog', 'calculator', 'custom'];
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipeGesture();
+}, false);
+
+function handleSwipeGesture() {
+    const swipeDistance = touchEndX - touchStartX;
+    if (Math.abs(swipeDistance) < 50) return; // Ignore small movements
+
+    const currentIndex = TABS_ORDER.indexOf(currentMobileTab);
+    if (swipeDistance < -50 && currentIndex < TABS_ORDER.length - 1) {
+        // Swiped Left -> Go to Next Tab
+        switchMobileTab(TABS_ORDER[currentIndex + 1]);
+    } else if (swipeDistance > 50 && currentIndex > 0) {
+        // Swiped Right -> Go to Prev Tab
+        switchMobileTab(TABS_ORDER[currentIndex - 1]);
+    }
+}
+
 // ================= 5. TAB SWITCHING & HELPERS =================
 function switchMobileTab(tab) {
     currentMobileTab = tab;
 
-    // Reset bottom nav icons
-    document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('text-orange-500', 'font-bold');
+    // Reset bottom and top nav buttons
+    document.querySelectorAll('nav button, .top-tab-btn').forEach(btn => {
+        btn.classList.remove('text-orange-500', 'font-bold', 'bg-orange-500', 'text-white');
         btn.classList.add('text-slate-400');
     });
 
@@ -537,13 +565,22 @@ function switchMobileTab(tab) {
         activeNav.classList.remove('text-slate-400');
     }
 
+    const activeTopNav = document.getElementById(`top-nav-${tab}`);
+    if (activeTopNav) {
+        activeTopNav.classList.add('bg-orange-500', 'text-white', 'font-extrabold');
+        activeTopNav.classList.remove('text-slate-400');
+    }
+
     // Hide all sections
     document.getElementById('tab-calculator')?.classList.add('hidden');
     document.getElementById('tab-custom')?.classList.add('hidden');
     document.getElementById('tab-catalog')?.classList.add('hidden');
 
-    // Show active section
-    document.getElementById(`tab-${tab}`)?.classList.remove('hidden');
+    // Show active section with smooth fade/slide in
+    const activeSection = document.getElementById(`tab-${tab}`);
+    if (activeSection) {
+        activeSection.classList.remove('hidden');
+    }
 }
 
 function onCurrencyChange() {
