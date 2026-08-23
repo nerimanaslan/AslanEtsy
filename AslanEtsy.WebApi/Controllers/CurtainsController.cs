@@ -517,6 +517,15 @@ public class CurtainsController : ControllerBase
                     Note = "Bordo El Örgüsü Kürk Ponponlu ve İnci Çiçekli Çeyizlik Babet Patik",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_knitted_ballet_slippers_burgundy.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Crochet Ballet Slippers with 3D Flower Appliqué | Cozy Floral House Shoes",
+                    M2Price = 850,
+                    Category = "SinglePrice",
+                    Fabric = "%100 El Örgüsü Yumuşak Yün İplik • Gri Zemin Üzeri 3D Pembe Çiçek Aplikeli Tabanlı Babet Patik",
+                    Note = "Gri Renk 3 Boyutlu Çiçekli Kaymaz Tabanlı El Örgüsü Babet Patik",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_ballet_slippers_grey_flower.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

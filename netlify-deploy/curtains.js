@@ -784,6 +784,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 El Örgüsü Yumuşak Yün İplik • Bordo Kürk Ponpon ve İnci Çiçek Detaylı Babet Patik',
         note: 'Bordo El Örgüsü Kürk Ponponlu ve İnci Çiçekli Çeyizlik Babet Patik',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_knitted_ballet_slippers_burgundy.jpg'
+    },
+    {
+        id: 109,
+        category: 'SinglePrice',
+        name: 'Handmade Crochet Ballet Slippers with 3D Flower Appliqué | Cozy Floral House Shoes',
+        m2Price: 850,
+        fabric: '%100 El Örgüsü Yumuşak Yün İplik • Gri Zemin Üzeri 3D Pembe Çiçek Aplikeli Tabanlı Babet Patik',
+        note: 'Gri Renk 3 Boyutlu Çiçekli Kaymaz Tabanlı El Örgüsü Babet Patik',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_ballet_slippers_grey_flower.jpg'
     }
 ];
 
