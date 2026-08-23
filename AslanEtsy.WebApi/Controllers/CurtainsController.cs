@@ -345,6 +345,16 @@ public class CurtainsController : ControllerBase
                     Note = "Mercan Somon & Krem Geniş Blok Çizgili Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/bold_striped_coral_cotton_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Personalized Name Embroidered Duvet Cover Set 100% Cotton Organic Fabric",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Adaçayı / Haki Yeşili (Sage Green) Cepli & İsim Nakışlı Lüks Nevresim Takımı",
+                    Note = "Haki / Adaçayı Yeşili Cepli ve İsim Nakışlı Rustik Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_name_sage_green_cotton_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

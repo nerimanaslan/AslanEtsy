@@ -471,6 +471,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/bold_striped_coral_cotton_bedding.webp'
     },
     {
+        id: 33,
+        category: 'Bedding',
+        name: 'Personalized Name Embroidered Duvet Cover Set 100% Cotton Organic Fabric',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Adaçayı / Haki Yeşili (Sage Green) Cepli & İsim Nakışlı Lüks Nevresim Takımı',
+        note: 'Haki / Adaçayı Yeşili Cepli ve İsim Nakışlı Rustik Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_name_sage_green_cotton_bedding.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
