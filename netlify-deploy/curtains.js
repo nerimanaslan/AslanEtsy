@@ -739,6 +739,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 Doğal Keten (Organic Linen) • Düğmeli Tunik & Bluz',
         note: 'Doğal Keten Yazlık Düğmeli Tunik / Bluz - Çoklu Renk Seçenekleri',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_linen_button_front_tunic_top.jpg'
+    },
+    {
+        id: 104,
+        category: 'SinglePrice',
+        name: 'Handmade Crochet Flower Handbag with Wooden Handles | Navy Blue Floral Knitted Bag',
+        m2Price: 1950,
+        fabric: '%100 El Örgüsü Pamuk İplik • Ahşap Kulplu 3 Boyutlu Gül Desenli Çanta',
+        note: 'Lacivert El Örgüsü Çiçekli / Güllü Ahşap Saplı Omuz & El Çantası',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_flower_handbag_navy.jpg'
     }
 ];
 

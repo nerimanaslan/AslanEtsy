@@ -472,6 +472,15 @@ public class CurtainsController : ControllerBase
                     Note = "Doğal Keten Yazlık Düğmeli Tunik / Bluz - Çoklu Renk Seçenekleri",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/womens_linen_button_front_tunic_top.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Crochet Flower Handbag with Wooden Handles | Navy Blue Floral Knitted Bag",
+                    M2Price = 1950,
+                    Category = "SinglePrice",
+                    Fabric = "%100 El Örgüsü Pamuk İplik • Ahşap Kulplu 3 Boyutlu Gül Desenli Çanta",
+                    Note = "Lacivert El Örgüsü Çiçekli / Güllü Ahşap Saplı Omuz & El Çantası",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_flower_handbag_navy.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 
