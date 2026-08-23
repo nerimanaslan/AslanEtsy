@@ -285,6 +285,16 @@ public class CurtainsController : ControllerBase
                     Note = "Vizon Bej & Beyaz Katmanlı Fırfırlı Lüks Pamuk Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_beige_white.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Personalized Duvet Cover Set 100% Cotton, Custom Embroidered Bedding Set, Organic Cotton Ruffled Bedspread, Minimalist Bedroom Decor Gift",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton • Kişiye Özel İsim Nakışlı (Personalized) & Gri Fırfırlı / Degrade Lüks Nevresim Takımı",
+                    Note = "İsim Nakışlı Gri Fırfırlı Degrade Lüks Pamuk Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_embroidered_ruffled_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

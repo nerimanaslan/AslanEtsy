@@ -417,6 +417,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ruffled_duvet_cover_set_beige_white.webp'
     },
     {
+        id: 27,
+        category: 'Bedding',
+        name: 'Personalized Duvet Cover Set 100% Cotton, Custom Embroidered Bedding Set, Organic Cotton Ruffled Bedspread, Minimalist Bedroom Decor Gift',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton • Kişiye Özel İsim Nakışlı (Personalized) & Gri Fırfırlı / Degrade Lüks Nevresim Takımı',
+        note: 'İsim Nakışlı Gri Fırfırlı Degrade Lüks Pamuk Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/personalized_embroidered_ruffled_bedding.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
