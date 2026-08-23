@@ -544,6 +544,15 @@ public class CurtainsController : ControllerBase
                     Note = "Doğal 4 Katlı Organik Müslin Kumaş Kadın & Erkek Unisex Bornoz / Sabahlık",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/muslin_bathrobe_gauze_robe_charcoal.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                {
+                    Name = "Handmade Crochet Granny Square Tote Bag | Boho Shoulder Bag | Reusable Everyday Market Bag",
+                    M2Price = 1750,
+                    Category = "SinglePrice",
+                    Fabric = "%100 El Örgüsü Pamuk İplik • Lila Tabanlı Renkli Hanım Dilendi Bey Beğendi Motifli Kol & Tote Çanta",
+                    Note = "Lila / Mor Çok Renkli Motifli Geniş Bohem El Örgüsü Omuz & Alışveriş Çantası",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_tote_bag_lilac.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

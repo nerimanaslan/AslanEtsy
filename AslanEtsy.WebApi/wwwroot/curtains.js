@@ -811,6 +811,15 @@ const DEFAULT_WEB_PRODUCTS = [
         fabric: '%100 Organik Pamuk Müslin (4 Katlı Soft Muslin Gauze) • Antrasit / Füme Renk Bornoz & Sabahlık',
         note: 'Doğal 4 Katlı Organik Müslin Kumaş Kadın & Erkek Unisex Bornoz / Sabahlık',
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/muslin_bathrobe_gauze_robe_charcoal.jpg'
+    },
+    {
+        id: 111,
+        category: 'SinglePrice',
+        name: 'Handmade Crochet Granny Square Tote Bag | Boho Shoulder Bag | Reusable Everyday Market Bag',
+        m2Price: 1750,
+        fabric: '%100 El Örgüsü Pamuk İplik • Lila Tabanlı Renkli Hanım Dilendi Bey Beğendi Motifli Kol & Tote Çanta',
+        note: 'Lila / Mor Çok Renkli Motifli Geniş Bohem El Örgüsü Omuz & Alışveriş Çantası',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/clothing/handmade_crochet_granny_square_tote_bag_lilac.jpg'
     }
 ];
 
