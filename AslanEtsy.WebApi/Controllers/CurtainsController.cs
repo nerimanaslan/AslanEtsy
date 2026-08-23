@@ -395,6 +395,16 @@ public class CurtainsController : ControllerBase
                     Note = "Krem Zemin Üzerine Etnik Çiçek İşlemeli Nefes Alan Bohem Müslin Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ethnic_embroidered_cotton_muslin_bedding.webp",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Organic Buldan Cotton Bedding Set, 100% Pure Cotton Cross Stitch Duvet Cover, Handmade Embroidered Bedspread, Traditional Turkish Linen Set",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Buldan Pamuğu • Krem Zemin El İşi Kanaviçe / Çiçek Nakışlı (Cross Stitch) Geleneksel Lüks Nevresim Takımı",
+                    Note = "Geleneksel Organik Buldan Kumaşı El İşi Kanaviçe Çiçek Nakışlı Lüks Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/organic_buldan_cotton_cross_stitch_bedding.webp",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

@@ -516,6 +516,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/ethnic_embroidered_cotton_muslin_bedding.webp'
     },
     {
+        id: 38,
+        category: 'Bedding',
+        name: 'Organic Buldan Cotton Bedding Set, 100% Pure Cotton Cross Stitch Duvet Cover, Handmade Embroidered Bedspread, Traditional Turkish Linen Set',
+        m2Price: 22000,
+        fabric: '%100 Organic Buldan Pamuğu • Krem Zemin El İşi Kanaviçe / Çiçek Nakışlı (Cross Stitch) Geleneksel Lüks Nevresim Takımı',
+        note: 'Geleneksel Organik Buldan Kumaşı El İşi Kanaviçe Çiçek Nakışlı Lüks Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/organic_buldan_cotton_cross_stitch_bedding.webp'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
