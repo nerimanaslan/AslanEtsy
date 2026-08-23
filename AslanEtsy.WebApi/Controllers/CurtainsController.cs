@@ -425,6 +425,16 @@ public class CurtainsController : ControllerBase
                     Note = "Vizon Gri & Beyaz Kat Kat Fırfır ve Fransız Dantel Detaylı Lüks Nevresim Takımı",
                     ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/romantic_french_ruffled_lace_bedding_grey.jpg",
                     CreatedAtUtc = DateTime.UtcNow
+                },
+                new()
+                {
+                    Name = "Elegant Mauve and Ivory Lace Bedding Set | Floral Lace Duvet Cover with Striped Details",
+                    M2Price = 22000,
+                    Category = "Bedding",
+                    Fabric = "%100 Organic Cotton Satin • Gül Kurusu / Mürdüm & Ekru Çizgili Fransız Dantelli (Floral Lace) Lüks Nevresim Takımı",
+                    Note = "Mürdüm / Gül Kurusu Çizgili ve Fransız Çiçek Dantelli Lüks Pamuk Saten Nevresim Takımı",
+                    ImageUrl = "https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/mauve_ivory_lace_striped_bedding.jpg",
+                    CreatedAtUtc = DateTime.UtcNow
                 }
             };
 

@@ -547,6 +547,15 @@ const DEFAULT_WEB_PRODUCTS = [
         imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/romantic_french_ruffled_lace_bedding_grey.jpg'
     },
     {
+        id: 41,
+        category: 'Bedding',
+        name: 'Elegant Mauve and Ivory Lace Bedding Set | Floral Lace Duvet Cover with Striped Details',
+        m2Price: 22000,
+        fabric: '%100 Organic Cotton Satin • Gül Kurusu / Mürdüm & Ekru Çizgili Fransız Dantelli (Floral Lace) Lüks Nevresim Takımı',
+        note: 'Mürdüm / Gül Kurusu Çizgili ve Fransız Çiçek Dantelli Lüks Pamuk Saten Nevresim Takımı',
+        imageUrl: 'https://raw.githubusercontent.com/nerimanaslan/AslanEtsy/main/AslanEtsy.WebApi/wwwroot/images/bedding/mauve_ivory_lace_striped_bedding.jpg'
+    },
+    {
         id: 3,
         category: 'Curtain',
         name: 'Classic Linen Striped Blackout Curtains Organic Fabric - Custom Size',
